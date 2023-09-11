@@ -46,6 +46,7 @@ class TaskServiceImplTest {
         var task = taskService.getTask(TASKS_TO_CREATE_COUNT);
 
         assertNotNull(task);
+        assertEquals(task.getId(), TASKS_TO_CREATE_COUNT);
         assertEquals(task.getName(), NAME_PREFIX + TASKS_TO_CREATE_COUNT);
     }
 
@@ -70,7 +71,18 @@ class TaskServiceImplTest {
     }
 
     @Test
+    @DisplayName("Должен обновлять поля таски")
     void updateTask() {
+        var task = taskService.getTask(TASKS_TO_CREATE_COUNT);
+        task.setName("UPDATED_NAME");
+        task.setDescription("UPDATED_DESCRIPTION");
+
+        taskService.updateTask(task);
+
+        var updatedTask = taskService.getTask(TASKS_TO_CREATE_COUNT);
+
+        assertEquals(updatedTask.getName(), task.getName());
+        assertEquals(updatedTask.getDescription(), task.getDescription());
     }
 
     @Test

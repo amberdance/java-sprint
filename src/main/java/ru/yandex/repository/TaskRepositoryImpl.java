@@ -39,7 +39,7 @@ public class TaskRepositoryImpl implements TaskRepository {
             taskToUpdate.setName(task.getName());
             taskToUpdate.setDescription(task.getDescription());
 
-            taskStorage.set(getIncrementedId(), taskToUpdate);
+            taskStorage.set(task.getId() - 1, taskToUpdate);
 
             return taskToUpdate;
         } else {
