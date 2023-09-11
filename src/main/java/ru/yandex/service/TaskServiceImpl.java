@@ -1,6 +1,7 @@
 package ru.yandex.service;
 
 import lombok.RequiredArgsConstructor;
+import ru.yandex.exception.TaskNotFoundException;
 import ru.yandex.model.Task;
 import ru.yandex.repository.TaskRepository;
 
@@ -18,7 +19,7 @@ public class TaskServiceImpl implements TaskService {
 
     @Override
     public Task getTask(int id) {
-        return taskRepository.findById(id);
+        return taskRepository.findById(id).orElseThrow(TaskNotFoundException::new);
     }
 
     @Override
