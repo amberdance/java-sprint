@@ -3,6 +3,7 @@ package ru.yandex.repository;
 import ru.yandex.model.Task;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
@@ -13,7 +14,7 @@ public class TaskRepositoryImpl implements TaskRepository {
 
     @Override
     public List<Task> findAll() {
-        return taskStorage;
+        return Collections.unmodifiableList(taskStorage);
     }
 
     @Override
