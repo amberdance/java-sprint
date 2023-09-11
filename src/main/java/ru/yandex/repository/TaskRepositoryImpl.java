@@ -1,10 +1,10 @@
 package ru.yandex.repository;
 
-import ru.yandex.exception.TaskNotFoundException;
 import ru.yandex.model.Task;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 public class TaskRepositoryImpl implements TaskRepository {
 
@@ -17,30 +17,42 @@ public class TaskRepositoryImpl implements TaskRepository {
     }
 
     @Override
-    public Task findById(int id) {
-        return taskStorage.stream().filter(t -> t.getId() == id).findFirst().orElseThrow(TaskNotFoundException::new);
+    public Optional<Task> findById(int id) {
+        return taskStorage.stream().filter(t -> t.getId() == id).findFirst();
     }
 
     @Override
     public Task create(Task task) {
-        task.setId(++id);
-        taskStorage.add(id, task);
+        try {
+            task.setId(id++);
+            taskStorage.add(id, task);
+        } catch (Exception e) {
+            id--;
+        }
 
         return task;
     }
 
     @Override
     public Task update(Task task) {
-        var taskToUpdate = findById(task.getId());
-        taskToUpdate.setName(task.getName());
-        taskToUpdate.setDescription(task.getDescription());
+        var taskOptional = findById(task.getId());
 
-        return create(taskToUpdate);
+        if (taskOptional.isPresent()) {
+            var taskToUpdate = taskOptional.get();
+            taskToUpdate.setName(task.getName());
+            taskToUpdate.setDescription(task.getDescription());
+
+            taskStorage.set(id, taskToUpdate);
+
+            return taskToUpdate;
+        } else {
+            return create(task);
+        }
     }
 
     @Override
     public void delete(int id) {
-        taskStorage.remove(findById(id));
+        findById(id).ifPresent(taskStorage::remove);
     }
 
     @Override
