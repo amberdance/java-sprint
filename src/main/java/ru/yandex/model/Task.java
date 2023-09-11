@@ -2,13 +2,15 @@ package ru.yandex.model;
 
 import lombok.Builder;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
+
 
 @Data
+@EqualsAndHashCode(callSuper = true)
 @Builder
-public class Task {
+public class Task extends ModelBase {
 
-    public int id;
-    public String name;
-    public String description;
+    private String name;
+    private String description;
 
 }
