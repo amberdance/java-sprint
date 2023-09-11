@@ -9,7 +9,6 @@ import java.util.Optional;
 
 public class TaskRepositoryImpl implements TaskRepository {
 
-    private int id = 1;
     private final List<Task> taskStorage = new ArrayList<>();
 
     @Override
@@ -24,12 +23,9 @@ public class TaskRepositoryImpl implements TaskRepository {
 
     @Override
     public Task create(Task task) {
-        try {
-            task.setId(id++);
-            taskStorage.add(id, task);
-        } catch (Exception e) {
-            id--;
-        }
+        int id = getIncrementedId();
+        task.setId(id);
+        taskStorage.add(task);
 
         return task;
     }
@@ -43,7 +39,7 @@ public class TaskRepositoryImpl implements TaskRepository {
             taskToUpdate.setName(task.getName());
             taskToUpdate.setDescription(task.getDescription());
 
-            taskStorage.set(id, taskToUpdate);
+            taskStorage.set(getIncrementedId(), taskToUpdate);
 
             return taskToUpdate;
         } else {
@@ -59,6 +55,14 @@ public class TaskRepositoryImpl implements TaskRepository {
     @Override
     public void deleteBatch() {
         taskStorage.clear();
+    }
+
+    private int getIncrementedId() {
+        try {
+            return taskStorage.get(taskStorage.size() - 1).getId() + 1;
+        } catch (NullPointerException | IndexOutOfBoundsException ignored) {
+            return 1;
+        }
     }
 
 }
