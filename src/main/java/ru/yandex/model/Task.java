@@ -12,8 +12,8 @@ import lombok.NoArgsConstructor;
 @EqualsAndHashCode(callSuper = true)
 public class Task extends ModelBase {
 
-    protected String name;
-    protected String description;
+    private String name;
+    private String description;
 
     @Override
     public String toString() {
