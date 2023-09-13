@@ -6,7 +6,7 @@ import ru.yandex.model.Task;
 import java.util.List;
 
 @RequiredArgsConstructor
-public class ArrayListLastIdGenerator implements IdGenerator {
+public class ArrayListIdGenerator implements IdGenerator {
 
     private final List<Task> dataSource;
 

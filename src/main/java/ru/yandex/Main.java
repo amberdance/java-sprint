@@ -7,7 +7,7 @@ import ru.yandex.repository.EpicRepositoryImpl;
 import ru.yandex.repository.SubtaskRepositoryImpl;
 import ru.yandex.repository.TaskRepositoryImpl;
 import ru.yandex.service.TaskServiceImpl;
-import ru.yandex.utils.ArrayListLastIdGenerator;
+import ru.yandex.utils.ArrayListIdGenerator;
 
 import java.util.ArrayList;
 
@@ -16,7 +16,7 @@ public class Main {
     //Driver code
     public static void main(String[] args) {
         var dataSource = new ArrayList<Task>();
-        var idGenerator = new ArrayListLastIdGenerator(dataSource);
+        var idGenerator = new ArrayListIdGenerator(dataSource);
         var taskRepository = new TaskRepositoryImpl(dataSource, idGenerator);
         var epicRepository = new EpicRepositoryImpl(dataSource, idGenerator);
         var subtaskRepository = new SubtaskRepositoryImpl(dataSource, idGenerator);
