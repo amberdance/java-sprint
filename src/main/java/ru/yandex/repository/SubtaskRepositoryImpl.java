@@ -7,6 +7,8 @@ import ru.yandex.utils.IdGenerator;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.function.Function;
+import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 @RequiredArgsConstructor
@@ -14,20 +16,22 @@ public class SubtaskRepositoryImpl implements TaskRepository<Subtask> {
 
     private final List<Task> taskStorage;
     private final IdGenerator idGenerator;
+    private final Predicate<Task> filterByClass = Subtask.class::isInstance;
+    private final Function<Task, Subtask> classMapper = Subtask.class::cast;
 
     @Override
     public List<Subtask> findAll() {
         return taskStorage.stream()
-                .filter(Subtask.class::isInstance)
-                .map(Subtask.class::cast)
+                .filter(filterByClass)
+                .map(classMapper)
                 .collect(Collectors.toUnmodifiableList());
     }
 
     @Override
     public Optional<Subtask> findById(int id) {
         return taskStorage.stream()
-                .filter(Subtask.class::isInstance)
-                .map(Subtask.class::cast)
+                .filter(filterByClass)
+                .map(classMapper)
                 .filter(t -> t.getId() == id)
                 .findFirst();
     }

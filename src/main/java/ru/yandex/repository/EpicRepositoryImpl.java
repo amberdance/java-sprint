@@ -7,6 +7,8 @@ import ru.yandex.utils.IdGenerator;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.function.Function;
+import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 @RequiredArgsConstructor
@@ -14,19 +16,22 @@ public class EpicRepositoryImpl implements TaskRepository<Epic> {
 
     private final List<Task> taskStorage;
     private final IdGenerator idGenerator;
+    private final Predicate<Task> filterByClass = Epic.class::isInstance;
+    private final Function<Task, Epic> classMapper = Epic.class::cast;
 
     @Override
     public List<Epic> findAll() {
         return taskStorage.stream()
-                .filter(Epic.class::isInstance)
-                .map(Epic.class::cast).collect(Collectors.toUnmodifiableList());
+                .filter(filterByClass)
+                .map(classMapper)
+                .collect(Collectors.toUnmodifiableList());
     }
 
     @Override
     public Optional<Epic> findById(int id) {
         return taskStorage.stream()
-                .filter(Epic.class::isInstance)
-                .map(Epic.class::cast)
+                .filter(filterByClass)
+                .map(classMapper)
                 .filter(t -> t.getId() == id)
                 .findFirst();
     }
