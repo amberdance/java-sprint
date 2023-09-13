@@ -9,7 +9,10 @@ import ru.yandex.model.Epic;
 import ru.yandex.model.Status;
 import ru.yandex.model.Subtask;
 import ru.yandex.model.Task;
+import ru.yandex.repository.EpicRepositoryImpl;
+import ru.yandex.repository.SubtaskRepositoryImpl;
 import ru.yandex.repository.TaskRepositoryImpl;
+import ru.yandex.utils.ArrayListLastIdGenerator;
 
 import java.util.ArrayList;
 
@@ -27,7 +30,13 @@ class TaskServiceImplTest {
 
     @BeforeAll
     static void setUp() {
-        taskService = new TaskServiceImpl(new TaskRepositoryImpl(new ArrayList<>()));
+        var dataSource = new ArrayList<Task>();
+        var idGenerator = new ArrayListLastIdGenerator(dataSource);
+        var taskRepository = new TaskRepositoryImpl(dataSource, idGenerator);
+        var epicRepository = new EpicRepositoryImpl(dataSource, idGenerator);
+        var subtaskRepository = new SubtaskRepositoryImpl(dataSource, idGenerator);
+
+        taskService = new TaskServiceImpl(taskRepository, epicRepository, subtaskRepository);
     }
 
     @BeforeEach
