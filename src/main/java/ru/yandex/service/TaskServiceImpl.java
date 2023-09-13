@@ -57,8 +57,14 @@ public class TaskServiceImpl implements TaskService {
     }
 
     @Override
-    public Subtask createSubtask(Subtask subtask) {
-        return subtaskRepository.create(subtask);
+    public Subtask createSubtask(Subtask subtaskCreate) {
+        var epic = epicRepository.findById(subtaskCreate.getEpicId())
+                .orElseThrow(() -> new TaskNotFoundException("Epic with id " + " was not found"));
+
+        var subtask = subtaskRepository.create(subtaskCreate);
+        epic.getSubtasks().add(subtask);
+
+        return subtask;
     }
 
     @Override
@@ -82,8 +88,19 @@ public class TaskServiceImpl implements TaskService {
     }
 
     @Override
-    public void deleteEpic(int id) {
+    public boolean deleteEpic(int id) {
+        var epicOptional = epicRepository.findById(id);
+
+        if (epicOptional.isEmpty()) {
+            return false;
+        }
+
+        var subtasks = epicOptional.get().getSubtasks();
+        subtasks.forEach(s -> subtaskRepository.delete(s.getId()));
         epicRepository.delete(id);
+
+        return true;
+
     }
 
     @Override
@@ -98,7 +115,7 @@ public class TaskServiceImpl implements TaskService {
 
     @Override
     public void deleteEpics() {
-        epicRepository.deleteBatch();
+        epicRepository.findAll().forEach(e -> deleteEpic(e.getId()));
     }
 
     @Override

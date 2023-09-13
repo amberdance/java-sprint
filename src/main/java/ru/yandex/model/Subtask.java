@@ -14,6 +14,14 @@ import lombok.ToString;
 @EqualsAndHashCode(callSuper = true)
 public class Subtask extends Epic {
 
+    private int epicId;
+
+    public Subtask(int epicId, String name, String description) {
+        this.epicId = epicId;
+        this.name = name;
+        this.description = description;
+    }
+
     public Subtask(String name, String description) {
         this.name = name;
         this.description = description;

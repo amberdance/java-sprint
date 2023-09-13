@@ -20,6 +20,7 @@ public class EpicServiceTest extends AbstractServiceTest {
 
     protected static final int TASKS_TO_CREATE_COUNT = 3;
     private static final int EPICS_TO_CREATE_COUNT = 3;
+    private static final int SUBTASKS_TO_CREATE_COUNT = 3;
     private static EpicService epicService;
 
 
@@ -45,6 +46,11 @@ public class EpicServiceTest extends AbstractServiceTest {
             var task = new Task();
             task.setId(idGenerator.generateId());
             dataSource.add(task);
+        }
+
+        for (int i = 0; i < SUBTASKS_TO_CREATE_COUNT; i++) {
+            var subtask = new Subtask();
+
         }
     }
 

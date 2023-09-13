@@ -13,7 +13,7 @@ public interface EpicService {
 
     Epic updateEpic(Epic epic);
 
-    void deleteEpic(int id);
+    boolean deleteEpic(int id);
 
     void deleteEpics();
 }
