@@ -38,8 +38,7 @@ public class SubtaskRepositoryImpl implements TaskRepository<Subtask> {
 
     @Override
     public Subtask create(Subtask subtask) {
-        int id = idGenerator.generateId();
-        subtask.setId(id);
+        subtask.setId(idGenerator.generateId());
         taskStorage.add(subtask);
 
         return subtask;
