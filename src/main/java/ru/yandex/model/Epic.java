@@ -24,5 +24,9 @@ public class Epic extends Task {
         this.description = description;
     }
 
-
+    public Epic(String name, String description, List<Subtask> subtasks) {
+        this.name = name;
+        this.description = description;
+        this.subtasks = subtasks;
+    }
 }
