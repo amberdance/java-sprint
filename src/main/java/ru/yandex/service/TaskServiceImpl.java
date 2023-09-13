@@ -14,7 +14,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @RequiredArgsConstructor
-public class TaskServiceImpl implements TaskService {
+public class TaskServiceImpl implements TaskService, EpicService, SubtaskService {
 
     private final TaskRepository<Task> taskRepository;
     private final EpicRepositoryImpl epicEpicRepository;
@@ -32,12 +32,12 @@ public class TaskServiceImpl implements TaskService {
 
     @Override
     public List<Epic> getEpicTasks() {
-        return filterByClass(Epic.class);
+        return epicEpicRepository.findAll();
     }
 
     @Override
     public List<Subtask> getSubtasks() {
-        return filterByClass(Subtask.class);
+        return subtaskSubtaskRepository.findAll();
     }
 
     @Override
