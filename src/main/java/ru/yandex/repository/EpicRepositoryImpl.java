@@ -3,6 +3,7 @@ package ru.yandex.repository;
 import lombok.RequiredArgsConstructor;
 import ru.yandex.model.Epic;
 import ru.yandex.model.Task;
+import ru.yandex.utils.IdGenerator;
 
 import java.util.List;
 import java.util.Optional;
@@ -11,6 +12,7 @@ import java.util.Optional;
 public class EpicRepositoryImpl implements TaskRepository<Epic> {
 
     private final List<Task> taskStorage;
+    private final IdGenerator idGenerator;
 
     @Override
     public List<Epic> findAll() {
