@@ -15,7 +15,7 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-class TaskServiceTest extends BaseServiceTest {
+class TaskServiceTest extends AbstractServiceTest {
 
     private static TaskService taskService;
 

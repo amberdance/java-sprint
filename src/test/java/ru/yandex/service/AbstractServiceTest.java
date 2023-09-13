@@ -13,7 +13,7 @@ import ru.yandex.utils.IdGenerator;
 import java.util.ArrayList;
 import java.util.List;
 
-public class BaseServiceTest {
+public class AbstractServiceTest {
 
     protected static final int TASKS_TO_CREATE_COUNT = 5;
     protected static final String NAME_PREFIX = "Name_";

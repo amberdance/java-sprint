@@ -16,7 +16,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-public class EpicServiceTest extends BaseServiceTest {
+public class EpicServiceTest extends AbstractServiceTest {
 
     protected static final int TASKS_TO_CREATE_COUNT = 3;
     private static final int EPICS_TO_CREATE_COUNT = 3;

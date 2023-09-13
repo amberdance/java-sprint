@@ -13,7 +13,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-class SubtaskServiceTest extends BaseServiceTest {
+class SubtaskServiceTest extends AbstractServiceTest {
 
     protected static final int TASKS_TO_CREATE_COUNT = 3;
     private static final int SUBTASKS_TO_CREATE_COUNT = 3;
