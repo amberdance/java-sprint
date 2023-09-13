@@ -39,12 +39,12 @@ public class TaskServiceImpl implements TaskService {
 
     @Override
     public Epic getEpic(int id) {
-        return null;
+        return epicRepository.findById(id).orElseThrow(TaskNotFoundException::new);
     }
 
     @Override
     public Subtask getSubtask(int id) {
-        return null;
+        return subtaskRepository.findById(id).orElseThrow(TaskNotFoundException::new);
     }
 
     @Override
@@ -54,17 +54,17 @@ public class TaskServiceImpl implements TaskService {
 
     @Override
     public Epic createEpic(Epic epic) {
-        return null;
+        return epicRepository.create(epic);
     }
 
     @Override
     public Subtask createsubtask(Subtask subtask) {
-        return null;
+        return subtaskRepository.create(subtask);
     }
 
     @Override
     public Epic updateEpic(Epic epic) {
-        return null;
+        return epicRepository.update(epic);
     }
 
     @Override
@@ -74,7 +74,7 @@ public class TaskServiceImpl implements TaskService {
 
     @Override
     public Subtask updatesubtask(Subtask subtask) {
-        return null;
+        return subtaskRepository.update(subtask);
     }
 
     @Override
@@ -84,12 +84,12 @@ public class TaskServiceImpl implements TaskService {
 
     @Override
     public void deleteEpic(int id) {
-
+        epicRepository.delete(id);
     }
 
     @Override
     public void deleteSubtask(int id) {
-
+        subtaskRepository.delete(id);
     }
 
     @Override
@@ -99,12 +99,12 @@ public class TaskServiceImpl implements TaskService {
 
     @Override
     public void deleteEpics() {
-
+        epicRepository.deleteBatch();
     }
 
     @Override
     public void deleteSubtasks() {
-
+        subtaskRepository.deleteBatch();
     }
 
     @Override
