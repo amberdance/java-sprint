@@ -1,6 +1,7 @@
 package ru.yandex.service;
 
 import ru.yandex.model.Epic;
+import ru.yandex.model.Status;
 import ru.yandex.model.Subtask;
 import ru.yandex.model.Task;
 
@@ -23,4 +24,6 @@ public interface TaskService {
     void deleteTask(int id);
 
     void deleteTasks();
+
+    void updateStatus(Task task, Status status);
 }

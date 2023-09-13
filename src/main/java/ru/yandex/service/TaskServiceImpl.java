@@ -3,6 +3,7 @@ package ru.yandex.service;
 import lombok.RequiredArgsConstructor;
 import ru.yandex.exception.TaskNotFoundException;
 import ru.yandex.model.Epic;
+import ru.yandex.model.Status;
 import ru.yandex.model.Subtask;
 import ru.yandex.model.Task;
 import ru.yandex.repository.TaskRepository;
@@ -53,6 +54,12 @@ public class TaskServiceImpl implements TaskService {
     @Override
     public void deleteTasks() {
         taskRepository.deleteBatch();
+    }
+
+    @Override
+    public void updateStatus(Task task, Status status) {
+        task.setStatus(status);
+        taskRepository.update(task);
     }
 
     @SuppressWarnings("unchecked")

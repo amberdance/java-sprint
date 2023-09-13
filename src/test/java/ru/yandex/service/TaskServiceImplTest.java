@@ -130,4 +130,14 @@ class TaskServiceImplTest {
         taskService.createTask(new Subtask("subtask", "subtask"));
         assertEquals(1, taskService.getSubtasks().size());
     }
+
+    @Test
+    @DisplayName("Должен обновлять статус на указанный")
+    void updateStatus() {
+        var task = taskService.getTask(TASKS_TO_CREATE_COUNT);
+
+        assertEquals(task.getStatus(), Status.NEW);
+        taskService.updateStatus(task, Status.IN_PROGRESS);
+        assertEquals(task.getStatus(), Status.IN_PROGRESS);
+    }
 }
