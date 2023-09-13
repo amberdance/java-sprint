@@ -2,10 +2,13 @@ package ru.yandex.service;
 
 import lombok.RequiredArgsConstructor;
 import ru.yandex.exception.TaskNotFoundException;
+import ru.yandex.model.Epic;
+import ru.yandex.model.Subtask;
 import ru.yandex.model.Task;
 import ru.yandex.repository.TaskRepository;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @RequiredArgsConstructor
 public class TaskServiceImpl implements TaskService {
@@ -20,6 +23,16 @@ public class TaskServiceImpl implements TaskService {
     @Override
     public Task getTask(int id) {
         return taskRepository.findById(id).orElseThrow(TaskNotFoundException::new);
+    }
+
+    @Override
+    public List<Epic> getEpicTasks() {
+        return filterByClass(Epic.class);
+    }
+
+    @Override
+    public List<Subtask> getSubtasks() {
+        return filterByClass(Subtask.class);
     }
 
     @Override
@@ -40,5 +53,10 @@ public class TaskServiceImpl implements TaskService {
     @Override
     public void deleteTasks() {
         taskRepository.deleteBatch();
+    }
+
+    @SuppressWarnings("unchecked")
+    private <T> List<T> filterByClass(Class<? extends Task> clasz) {
+        return (List<T>) taskRepository.findAll().stream().filter(clasz::isInstance).collect(Collectors.toList());
     }
 }

@@ -5,7 +5,9 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import ru.yandex.exception.TaskNotFoundException;
+import ru.yandex.model.Epic;
 import ru.yandex.model.Status;
+import ru.yandex.model.Subtask;
 import ru.yandex.model.Task;
 import ru.yandex.repository.TaskRepositoryImpl;
 
@@ -113,5 +115,19 @@ class TaskServiceImplTest {
             taskService.getTasks().clear();
             taskService.getTasks().remove(1);
         });
+    }
+
+    @Test
+    @DisplayName("Должен возвращать только список эпиков")
+    void getEpicTasks() {
+        taskService.createTask(new Epic("epic", "epic"));
+        assertEquals(1, taskService.getEpicTasks().size());
+    }
+
+    @Test
+    @DisplayName("Должен возвращать только список подзадача")
+    void getSubtasks() {
+        taskService.createTask(new Subtask("subtask", "subtask"));
+        assertEquals(1, taskService.getSubtasks().size());
     }
 }
