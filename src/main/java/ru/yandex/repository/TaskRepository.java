@@ -1,19 +1,17 @@
 package ru.yandex.repository;
 
-import ru.yandex.model.Task;
-
 import java.util.List;
 import java.util.Optional;
 
-public interface TaskRepository {
+public interface TaskRepository<T> {
 
-    List<Task> findAll();
+    List<T> findAll();
 
-    Optional<Task> findById(int id);
+    Optional<T> findById(int id);
 
-    Task create(Task task);
+    T create(T task);
 
-    Task update(Task task);
+    T update(T task);
 
     void delete(int id);
 

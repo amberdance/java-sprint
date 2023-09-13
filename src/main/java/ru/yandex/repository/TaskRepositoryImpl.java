@@ -7,7 +7,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
-public class TaskRepositoryImpl implements TaskRepository {
+public class TaskRepositoryImpl implements TaskRepository<Task> {
 
     private final List<Task> taskStorage = new ArrayList<>();
 

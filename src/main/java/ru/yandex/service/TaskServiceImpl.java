@@ -14,7 +14,7 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 public class TaskServiceImpl implements TaskService {
 
-    private final TaskRepository taskRepository;
+    private final TaskRepository<Task> taskRepository;
 
     @Override
     public List<Task> getTasks() {
