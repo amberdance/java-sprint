@@ -56,7 +56,7 @@ public class TaskServiceImpl implements TaskService {
     }
 
     @SuppressWarnings("unchecked")
-    private <T> List<T> filterByClass(Class<? extends Task> clasz) {
+    private <T extends Task> List<T> filterByClass(Class<? extends Task> clasz) {
         return (List<T>) taskRepository.findAll().stream().filter(clasz::isInstance).collect(Collectors.toList());
     }
 }
