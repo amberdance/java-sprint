@@ -6,12 +6,10 @@ import lombok.ToString;
 
 @ToString(callSuper = true)
 @EqualsAndHashCode(callSuper = true)
-public class Subtask extends Task {
+public class Subtask extends Epic {
 
     public Subtask(String name, String description) {
         this.name = name;
         this.description = description;
     }
-
-
 }
