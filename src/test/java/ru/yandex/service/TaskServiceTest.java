@@ -15,22 +15,20 @@ import ru.yandex.repository.TaskRepositoryImpl;
 import ru.yandex.utils.ArrayListIdGenerator;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-class TaskServiceImplTest {
+class TaskServiceTest extends BaseServiceTest {
 
     private static TaskService taskService;
-    private final static int TASKS_TO_CREATE_COUNT = 5;
-    private final static String NAME_PREFIX = "Name_";
-
+    private static final List<Task> dataSource = new ArrayList<>();
 
     @BeforeAll
     static void setUp() {
-        var dataSource = new ArrayList<Task>();
         var idGenerator = new ArrayListIdGenerator(dataSource);
         var taskRepository = new TaskRepositoryImpl(dataSource, idGenerator);
         var epicRepository = new EpicRepositoryImpl(dataSource, idGenerator);
@@ -41,7 +39,7 @@ class TaskServiceImplTest {
 
     @BeforeEach
     void beforeEach() {
-        taskService.deleteTasks();
+        dataSource.clear();
 
         for (int i = 1; i <= TASKS_TO_CREATE_COUNT; i++) {
             taskService.createTask(new Task(NAME_PREFIX + i, "Description_" + i));
@@ -51,7 +49,7 @@ class TaskServiceImplTest {
     @Test
     @DisplayName("Количество возвращенных задач == количеству задач в хранилище")
     void getTasks() {
-        assertEquals(taskService.getTasks().size(), TASKS_TO_CREATE_COUNT);
+        assertEquals(TASKS_TO_CREATE_COUNT, taskService.getTasks().size());
     }
 
     @Test
@@ -60,8 +58,8 @@ class TaskServiceImplTest {
         var task = taskService.getTask(TASKS_TO_CREATE_COUNT);
 
         assertNotNull(task);
-        assertEquals(task.getId(), TASKS_TO_CREATE_COUNT);
-        assertEquals(task.getName(), NAME_PREFIX + TASKS_TO_CREATE_COUNT);
+        assertEquals(TASKS_TO_CREATE_COUNT, task.getId());
+        assertEquals(NAME_PREFIX + TASKS_TO_CREATE_COUNT, task.getName());
     }
 
     @Test
@@ -80,8 +78,8 @@ class TaskServiceImplTest {
         taskService.createTask(taskToCreate);
         var task = taskService.getTask(taskToCreate.getId());
 
-        assertEquals(task.getId(), TASKS_TO_CREATE_COUNT + 1);
-        assertEquals(taskService.getTasks().size(), TASKS_TO_CREATE_COUNT + 1);
+        assertEquals(TASKS_TO_CREATE_COUNT + 1, task.getId());
+        assertEquals(TASKS_TO_CREATE_COUNT + 1, taskService.getTasks().size());
     }
 
     @Test
@@ -96,24 +94,23 @@ class TaskServiceImplTest {
 
         var updatedTask = taskService.getTask(TASKS_TO_CREATE_COUNT);
 
-        assertEquals(updatedTask.getName(), task.getName());
-        assertEquals(updatedTask.getDescription(), task.getDescription());
-        assertEquals(updatedTask.getStatus(), Status.IN_PROGRESS);
+        assertEquals(task.getName(), updatedTask.getName());
+        assertEquals(task.getDescription(), updatedTask.getDescription());
+        assertEquals(Status.IN_PROGRESS, updatedTask.getStatus());
     }
 
     @Test
     @DisplayName("Должен удалять таску по id")
     void deleteTask() {
-        assertEquals(taskService.getTasks().size(), TASKS_TO_CREATE_COUNT);
+        assertEquals(TASKS_TO_CREATE_COUNT, taskService.getTasks().size());
         taskService.deleteTask(1);
-        assertEquals(taskService.getTasks().size(), TASKS_TO_CREATE_COUNT - 1);
-
+        assertEquals(TASKS_TO_CREATE_COUNT - 1, taskService.getTasks().size());
     }
 
     @Test
     @DisplayName("Должен удалять все таски")
     void deleteTasks() {
-        assertEquals(taskService.getTasks().size(), TASKS_TO_CREATE_COUNT);
+        assertEquals(TASKS_TO_CREATE_COUNT, taskService.getTasks().size());
         taskService.deleteTasks();
         assertTrue(taskService.getTasks().isEmpty());
     }
@@ -147,8 +144,8 @@ class TaskServiceImplTest {
     void updateStatus() {
         var task = taskService.getTask(TASKS_TO_CREATE_COUNT);
 
-        assertEquals(task.getStatus(), Status.NEW);
+        assertEquals(Status.NEW, task.getStatus());
         taskService.updateStatus(task, Status.IN_PROGRESS);
-        assertEquals(task.getStatus(), Status.IN_PROGRESS);
+        assertEquals(Status.IN_PROGRESS, task.getStatus());
     }
 }
