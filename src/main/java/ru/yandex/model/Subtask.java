@@ -1,9 +1,10 @@
 package ru.yandex.model;
 
-import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.ToString;
 
-@Data
+
+@ToString(callSuper = true)
 @EqualsAndHashCode(callSuper = true)
 public class Subtask extends Task {
 
@@ -12,13 +13,5 @@ public class Subtask extends Task {
         this.description = description;
     }
 
-    @Override
-    public String toString() {
-        return "Subtask{" +
-                "name='" + name + '\'' +
-                ", description='" + description + '\'' +
-                ", status=" + status +
-                ", id=" + id +
-                '}';
-    }
+
 }

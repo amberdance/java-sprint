@@ -1,10 +1,10 @@
 package ru.yandex.model;
 
-import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.ToString;
 
-@Data
 
+@ToString(callSuper = true)
 @EqualsAndHashCode(callSuper = true)
 public class Epic extends Task {
 
@@ -13,13 +13,5 @@ public class Epic extends Task {
         this.description = description;
     }
 
-    @Override
-    public String toString() {
-        return "Epic{" +
-                "name='" + name + '\'' +
-                ", description='" + description + '\'' +
-                ", status=" + status +
-                ", id=" + id +
-                '}';
-    }
+
 }
