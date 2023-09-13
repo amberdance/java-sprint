@@ -18,7 +18,6 @@ public class BaseServiceTest {
     protected static final int TASKS_TO_CREATE_COUNT = 5;
     protected static final String NAME_PREFIX = "Name_";
     protected static final List<Task> dataSource = new ArrayList<>();
-
     protected static final IdGenerator idGenerator = new ArrayListIdGenerator(dataSource);
     protected static final TaskRepository<Task> taskRepository = new TaskRepositoryImpl(dataSource, idGenerator);
     protected static final TaskRepository<Epic> epicRepository = new EpicRepositoryImpl(dataSource, idGenerator);

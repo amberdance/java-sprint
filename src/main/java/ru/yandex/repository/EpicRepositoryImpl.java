@@ -19,8 +19,7 @@ public class EpicRepositoryImpl implements TaskRepository<Epic> {
     public List<Epic> findAll() {
         return taskStorage.stream()
                 .filter(Epic.class::isInstance)
-                .map(Epic.class::cast)
-                .collect(Collectors.toList());
+                .map(Epic.class::cast).collect(Collectors.toUnmodifiableList());
     }
 
     @Override
@@ -34,8 +33,7 @@ public class EpicRepositoryImpl implements TaskRepository<Epic> {
 
     @Override
     public Epic create(Epic epic) {
-        int id = idGenerator.generateId();
-        epic.setId(id);
+        epic.setId(idGenerator.generateId());
         taskStorage.add(epic);
 
         return epic;
