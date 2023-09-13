@@ -9,13 +9,6 @@ import ru.yandex.model.Epic;
 import ru.yandex.model.Status;
 import ru.yandex.model.Subtask;
 import ru.yandex.model.Task;
-import ru.yandex.repository.EpicRepositoryImpl;
-import ru.yandex.repository.SubtaskRepositoryImpl;
-import ru.yandex.repository.TaskRepositoryImpl;
-import ru.yandex.utils.ArrayListIdGenerator;
-
-import java.util.ArrayList;
-import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
@@ -25,15 +18,10 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 class TaskServiceTest extends BaseServiceTest {
 
     private static TaskService taskService;
-    private static final List<Task> dataSource = new ArrayList<>();
+
 
     @BeforeAll
     static void setUp() {
-        var idGenerator = new ArrayListIdGenerator(dataSource);
-        var taskRepository = new TaskRepositoryImpl(dataSource, idGenerator);
-        var epicRepository = new EpicRepositoryImpl(dataSource, idGenerator);
-        var subtaskRepository = new SubtaskRepositoryImpl(dataSource, idGenerator);
-
         taskService = new TaskServiceImpl(taskRepository, epicRepository, subtaskRepository);
     }
 
