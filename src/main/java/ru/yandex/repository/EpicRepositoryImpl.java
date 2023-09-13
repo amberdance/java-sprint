@@ -7,6 +7,7 @@ import ru.yandex.utils.IdGenerator;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @RequiredArgsConstructor
 public class EpicRepositoryImpl implements TaskRepository<Epic> {
@@ -16,7 +17,7 @@ public class EpicRepositoryImpl implements TaskRepository<Epic> {
 
     @Override
     public List<Epic> findAll() {
-        return null;
+        return taskStorage.stream().filter(Epic.class::isInstance).map(Epic.class::cast).collect(Collectors.toList());
     }
 
     @Override

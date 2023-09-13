@@ -7,6 +7,7 @@ import ru.yandex.utils.IdGenerator;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @RequiredArgsConstructor
 public class SubtaskRepositoryImpl implements TaskRepository<Subtask> {
@@ -16,7 +17,8 @@ public class SubtaskRepositoryImpl implements TaskRepository<Subtask> {
 
     @Override
     public List<Subtask> findAll() {
-        return null;
+        return taskStorage.stream().filter(Subtask.class::isInstance).map(Subtask.class::cast)
+                .collect(Collectors.toList());
     }
 
     @Override

@@ -5,7 +5,7 @@ import ru.yandex.model.Task;
 
 import java.util.List;
 
-public interface TaskService {
+public interface TaskService extends EpicService, SubtaskService {
 
     List<Task> getTasks();
 

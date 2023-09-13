@@ -132,7 +132,7 @@ class TaskServiceImplTest {
     @DisplayName("Должен возвращать только список эпиков")
     void getEpicTasks() {
         taskService.createTask(new Epic("epic", "epic"));
-        assertEquals(1, taskService.getEpicTasks().size());
+        assertEquals(1, taskService.getEpics().size());
     }
 
     @Test

@@ -6,19 +6,16 @@ import ru.yandex.model.Epic;
 import ru.yandex.model.Status;
 import ru.yandex.model.Subtask;
 import ru.yandex.model.Task;
-import ru.yandex.repository.EpicRepositoryImpl;
-import ru.yandex.repository.SubtaskRepositoryImpl;
 import ru.yandex.repository.TaskRepository;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 @RequiredArgsConstructor
-public class TaskServiceImpl implements TaskService, EpicService, SubtaskService {
+public class TaskServiceImpl implements TaskService {
 
     private final TaskRepository<Task> taskRepository;
-    private final EpicRepositoryImpl epicEpicRepository;
-    private final SubtaskRepositoryImpl subtaskSubtaskRepository;
+    private final TaskRepository<Epic> epicEpicRepository;
+    private final TaskRepository<Subtask> subtaskSubtaskRepository;
 
     @Override
     public List<Task> getTasks() {
@@ -26,12 +23,7 @@ public class TaskServiceImpl implements TaskService, EpicService, SubtaskService
     }
 
     @Override
-    public Task getTask(int id) {
-        return taskRepository.findById(id).orElseThrow(TaskNotFoundException::new);
-    }
-
-    @Override
-    public List<Epic> getEpicTasks() {
+    public List<Epic> getEpics() {
         return epicEpicRepository.findAll();
     }
 
@@ -41,8 +33,38 @@ public class TaskServiceImpl implements TaskService, EpicService, SubtaskService
     }
 
     @Override
+    public Task getTask(int id) {
+        return taskRepository.findById(id).orElseThrow(TaskNotFoundException::new);
+    }
+
+    @Override
+    public Epic getEpic(int id) {
+        return null;
+    }
+
+    @Override
+    public Subtask getSubtask(int id) {
+        return null;
+    }
+
+    @Override
     public Task createTask(Task task) {
         return taskRepository.create(task);
+    }
+
+    @Override
+    public Epic createEpic(Epic epic) {
+        return null;
+    }
+
+    @Override
+    public Subtask createsubtask(Subtask subtask) {
+        return null;
+    }
+
+    @Override
+    public Epic updateEpic(Epic epic) {
+        return null;
     }
 
     @Override
@@ -51,8 +73,23 @@ public class TaskServiceImpl implements TaskService, EpicService, SubtaskService
     }
 
     @Override
+    public Subtask updatesubtask(Subtask subtask) {
+        return null;
+    }
+
+    @Override
     public void deleteTask(int id) {
         taskRepository.delete(id);
+    }
+
+    @Override
+    public void deleteEpic(int id) {
+
+    }
+
+    @Override
+    public void deleteSubtask(int id) {
+
     }
 
     @Override
@@ -61,13 +98,19 @@ public class TaskServiceImpl implements TaskService, EpicService, SubtaskService
     }
 
     @Override
+    public void deleteEpics() {
+
+    }
+
+    @Override
+    public void deleteSubtasks() {
+
+    }
+
+    @Override
     public void updateStatus(Task task, Status status) {
         task.setStatus(status);
         taskRepository.update(task);
     }
 
-    @SuppressWarnings("unchecked")
-    private <T extends Task> List<T> filterByClass(Class<? extends Task> clasz) {
-        return (List<T>) taskRepository.findAll().stream().filter(clasz::isInstance).collect(Collectors.toList());
-    }
 }
