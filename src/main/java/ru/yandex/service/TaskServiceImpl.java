@@ -6,6 +6,8 @@ import ru.yandex.model.Epic;
 import ru.yandex.model.Status;
 import ru.yandex.model.Subtask;
 import ru.yandex.model.Task;
+import ru.yandex.repository.EpicRepositoryImpl;
+import ru.yandex.repository.SubtaskRepositoryImpl;
 import ru.yandex.repository.TaskRepository;
 
 import java.util.List;
@@ -15,6 +17,8 @@ import java.util.stream.Collectors;
 public class TaskServiceImpl implements TaskService {
 
     private final TaskRepository<Task> taskRepository;
+    private final EpicRepositoryImpl epicEpicRepository;
+    private final SubtaskRepositoryImpl subtaskSubtaskRepository;
 
     @Override
     public List<Task> getTasks() {
