@@ -17,31 +17,56 @@ public class EpicRepositoryImpl implements TaskRepository<Epic> {
 
     @Override
     public List<Epic> findAll() {
-        return taskStorage.stream().filter(Epic.class::isInstance).map(Epic.class::cast).collect(Collectors.toList());
+        return taskStorage.stream()
+                .filter(Epic.class::isInstance)
+                .map(Epic.class::cast)
+                .collect(Collectors.toList());
     }
 
     @Override
     public Optional<Epic> findById(int id) {
-        return Optional.empty();
+        return taskStorage.stream()
+                .filter(Epic.class::isInstance)
+                .map(Epic.class::cast)
+                .filter(t -> t.getId() == id)
+                .findFirst();
     }
 
     @Override
-    public Epic create(Epic task) {
-        return null;
+    public Epic create(Epic epic) {
+        int id = idGenerator.generateId();
+        epic.setId(id);
+        taskStorage.add(epic);
+
+        return epic;
     }
 
     @Override
-    public Epic update(Epic task) {
-        return null;
+    public Epic update(Epic epic) {
+        var epicOptional = findById(epic.getId());
+
+        if (epicOptional.isPresent()) {
+            var updatedEpic = epicOptional.get();
+            updatedEpic.setName(epic.getName());
+            updatedEpic.setDescription(epic.getDescription());
+            updatedEpic.setStatus(epic.getStatus());
+            updatedEpic.setSubtasks(epic.getSubtasks());
+
+            taskStorage.set(epic.getId() - 1, updatedEpic);
+
+            return updatedEpic;
+        } else {
+            return create(epic);
+        }
     }
 
     @Override
     public void delete(int id) {
-
+        findById(id).ifPresent(taskStorage::remove);
     }
 
     @Override
     public void deleteBatch() {
-
+        taskStorage.removeAll(findAll());
     }
 }
