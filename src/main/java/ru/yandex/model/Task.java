@@ -5,9 +5,6 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
-import java.util.ArrayList;
-import java.util.List;
-
 
 @Data
 @NoArgsConstructor
@@ -19,7 +16,6 @@ public class Task {
     protected String name;
     protected String description;
     protected Status status = Status.NEW;
-    private List<Epic> epicsList = new ArrayList<>();
 
     public Task(String name, String description) {
         this.name = name;

@@ -10,11 +10,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-@ToString(callSuper = true)
-@EqualsAndHashCode(callSuper = true)
-@NoArgsConstructor
 @Getter
 @Setter
+@NoArgsConstructor
+@ToString(callSuper = true)
+@EqualsAndHashCode(callSuper = true)
 public class Epic extends Task {
 
     private List<Subtask> subtasks = new ArrayList<>();
