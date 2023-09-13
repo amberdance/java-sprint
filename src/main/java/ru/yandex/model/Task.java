@@ -9,17 +9,29 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@EqualsAndHashCode(callSuper = true)
-public class Task extends ModelBase {
+@EqualsAndHashCode
+public class Task {
 
-    private String name;
-    private String description;
+    protected int id;
+    protected String name;
+    protected String description;
+    protected Status status = Status.NEW;
+
+    public Task(String name, String description) {
+        this.name = name;
+        this.description = description;
+    }
+
+    public Task(String name) {
+        this.name = name;
+    }
 
     @Override
     public String toString() {
         return "Task{" +
                 "name='" + name + '\'' +
                 ", description='" + description + '\'' +
+                ", status=" + status +
                 ", id=" + id +
                 '}';
     }

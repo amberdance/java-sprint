@@ -1,24 +1,23 @@
 package ru.yandex.model;
 
-import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
-import lombok.NoArgsConstructor;
 
 @Data
-@NoArgsConstructor
-@AllArgsConstructor
 @EqualsAndHashCode(callSuper = true)
 public class Subtask extends Task {
 
-    private String name;
-    private String description;
+    public Subtask(String name, String description) {
+        this.name = name;
+        this.description = description;
+    }
 
     @Override
     public String toString() {
         return "Subtask{" +
                 "name='" + name + '\'' +
                 ", description='" + description + '\'' +
+                ", status=" + status +
                 ", id=" + id +
                 '}';
     }

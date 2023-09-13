@@ -38,6 +38,7 @@ public class TaskRepositoryImpl implements TaskRepository {
             var taskToUpdate = taskOptional.get();
             taskToUpdate.setName(task.getName());
             taskToUpdate.setDescription(task.getDescription());
+            taskToUpdate.setStatus(task.getStatus());
 
             taskStorage.set(task.getId() - 1, taskToUpdate);
 

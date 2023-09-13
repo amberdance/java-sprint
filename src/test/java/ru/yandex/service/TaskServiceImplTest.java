@@ -5,6 +5,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import ru.yandex.exception.TaskNotFoundException;
+import ru.yandex.model.Status;
 import ru.yandex.model.Task;
 import ru.yandex.repository.TaskRepositoryImpl;
 
@@ -76,6 +77,7 @@ class TaskServiceImplTest {
         var task = taskService.getTask(TASKS_TO_CREATE_COUNT);
         task.setName("UPDATED_NAME");
         task.setDescription("UPDATED_DESCRIPTION");
+        task.setStatus(Status.IN_PROGRESS);
 
         taskService.updateTask(task);
 
@@ -83,6 +85,7 @@ class TaskServiceImplTest {
 
         assertEquals(updatedTask.getName(), task.getName());
         assertEquals(updatedTask.getDescription(), task.getDescription());
+        assertEquals(updatedTask.getStatus(), Status.IN_PROGRESS);
     }
 
     @Test
