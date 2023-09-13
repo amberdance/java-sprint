@@ -58,7 +58,7 @@ public class TaskServiceImpl implements TaskService {
     }
 
     @Override
-    public Subtask createsubtask(Subtask subtask) {
+    public Subtask createSubtask(Subtask subtask) {
         return subtaskRepository.create(subtask);
     }
 
@@ -73,7 +73,7 @@ public class TaskServiceImpl implements TaskService {
     }
 
     @Override
-    public Subtask updatesubtask(Subtask subtask) {
+    public Subtask updateSubtask(Subtask subtask) {
         return subtaskRepository.update(subtask);
     }
 

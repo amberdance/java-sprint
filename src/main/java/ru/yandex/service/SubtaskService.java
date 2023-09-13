@@ -10,9 +10,9 @@ public interface SubtaskService {
 
     Subtask getSubtask(int id);
 
-    Subtask createsubtask(Subtask subtask);
+    Subtask createSubtask(Subtask subtask);
 
-    Subtask updatesubtask(Subtask subtask);
+    Subtask updateSubtask(Subtask subtask);
 
     void deleteSubtask(int id);
 

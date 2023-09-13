@@ -20,7 +20,7 @@ public class SubtaskRepositoryImpl implements TaskRepository<Subtask> {
         return taskStorage.stream()
                 .filter(Subtask.class::isInstance)
                 .map(Subtask.class::cast)
-                .collect(Collectors.toList());
+                .collect(Collectors.toUnmodifiableList());
     }
 
     @Override
