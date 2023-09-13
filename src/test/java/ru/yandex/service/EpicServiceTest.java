@@ -6,7 +6,6 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import ru.yandex.exception.TaskNotFoundException;
 import ru.yandex.model.Epic;
-import ru.yandex.model.Status;
 import ru.yandex.model.Subtask;
 import ru.yandex.model.Task;
 
@@ -15,6 +14,7 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
+import static ru.yandex.model.Task.Status;
 
 public class EpicServiceTest extends AbstractServiceTest {
 
@@ -97,7 +97,7 @@ public class EpicServiceTest extends AbstractServiceTest {
 
         assertEquals(epic.getName(), updatedEpic.getName());
         assertEquals(epic.getDescription(), updatedEpic.getDescription());
-        assertEquals(Status.IN_PROGRESS, updatedEpic.getStatus());
+        assertEquals(Task.Status.IN_PROGRESS, updatedEpic.getStatus());
         assertEquals(1, updatedEpic.getSubtasks().size());
     }
 

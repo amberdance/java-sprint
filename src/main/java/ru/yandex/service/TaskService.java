@@ -1,6 +1,5 @@
 package ru.yandex.service;
 
-import ru.yandex.model.Status;
 import ru.yandex.model.Task;
 
 import java.util.List;
@@ -19,5 +18,5 @@ public interface TaskService extends EpicService, SubtaskService {
 
     void deleteTasks();
 
-    void updateStatus(Task task, Status status);
+    void updateStatus(Task task, Task.Status status);
 }

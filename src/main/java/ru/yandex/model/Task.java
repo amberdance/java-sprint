@@ -22,5 +22,10 @@ public class Task {
         this.description = description;
     }
 
+    public enum Status {
+        NEW,
+        IN_PROGRESS,
+        DONE
+    }
 
 }
