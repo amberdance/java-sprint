@@ -49,14 +49,8 @@ public class EpicServiceTest extends BaseServiceTest {
     }
 
     @Test
-    @DisplayName("Количество возвращенных эпиков == количеству эпиков в хранилище")
-    void getEpics() {
-        assertEquals(EPICS_TO_CREATE_COUNT, epicService.getEpics().size());
-    }
-
-    @Test
     @DisplayName("Должен вернуть эпик по заданному существующему id")
-    void getTask() {
+    void getEpic() {
         var epic = epicService.getEpic(EPICS_TO_CREATE_COUNT);
 
         assertNotNull(epic);
@@ -66,8 +60,14 @@ public class EpicServiceTest extends BaseServiceTest {
     }
 
     @Test
+    @DisplayName("Количество возвращенных эпиков == количеству эпиков в хранилище")
+    void getEpics() {
+        assertEquals(EPICS_TO_CREATE_COUNT, epicService.getEpics().size());
+    }
+
+    @Test
     @DisplayName("При несуществующем id выбрасывается исключение")
-    void shouldThrowsExceptionWhenTaskNotFound() {
+    void shouldThrowsExceptionWhenEpicNotFound() {
         assertThrows(TaskNotFoundException.class, () -> epicService.getEpic(999));
     }
 
@@ -84,7 +84,7 @@ public class EpicServiceTest extends BaseServiceTest {
 
     @Test
     @DisplayName("Должен обновлять поля эпика")
-    void updateTask() {
+    void updateEpic() {
         var epic = epicService.getEpic(EPICS_TO_CREATE_COUNT);
         epic.setName("UPDATED_NAME");
         epic.setDescription("UPDATED_DESCRIPTION");
@@ -103,7 +103,7 @@ public class EpicServiceTest extends BaseServiceTest {
 
     @Test
     @DisplayName("Должен удалять эпик по id")
-    void deleteTask() {
+    void deleteEpic() {
         assertEquals(EPICS_TO_CREATE_COUNT, epicService.getEpics().size());
         epicService.deleteEpic(1);
         assertEquals(EPICS_TO_CREATE_COUNT - 1, epicService.getEpics().size());
@@ -111,7 +111,7 @@ public class EpicServiceTest extends BaseServiceTest {
 
     @Test
     @DisplayName("Должен удалять все эпики")
-    void deleteTasks() {
+    void deleteEpics() {
         epicService.deleteEpics();
         assertEquals(TASKS_TO_CREATE_COUNT, dataSource.size());
     }
