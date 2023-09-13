@@ -1,11 +1,17 @@
 package ru.yandex.repository;
 
+import lombok.RequiredArgsConstructor;
 import ru.yandex.model.Subtask;
+import ru.yandex.model.Task;
 
 import java.util.List;
 import java.util.Optional;
 
+@RequiredArgsConstructor
 public class SubtaskRepositoryImpl implements TaskRepository<Subtask> {
+
+    private final List<Task> taskStorage;
+
     @Override
     public List<Subtask> findAll() {
         return null;

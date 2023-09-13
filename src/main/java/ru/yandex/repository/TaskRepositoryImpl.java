@@ -1,15 +1,16 @@
 package ru.yandex.repository;
 
+import lombok.RequiredArgsConstructor;
 import ru.yandex.model.Task;
 
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
+@RequiredArgsConstructor
 public class TaskRepositoryImpl implements TaskRepository<Task> {
 
-    private final List<Task> taskStorage = new ArrayList<>();
+    private final List<Task> taskStorage;
 
     @Override
     public List<Task> findAll() {
