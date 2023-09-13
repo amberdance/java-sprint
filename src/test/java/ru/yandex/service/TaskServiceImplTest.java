@@ -11,6 +11,8 @@ import ru.yandex.model.Subtask;
 import ru.yandex.model.Task;
 import ru.yandex.repository.TaskRepositoryImpl;
 
+import java.util.ArrayList;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -25,7 +27,7 @@ class TaskServiceImplTest {
 
     @BeforeAll
     static void setUp() {
-        taskService = new TaskServiceImpl(new TaskRepositoryImpl());
+        taskService = new TaskServiceImpl(new TaskRepositoryImpl(new ArrayList<>()));
     }
 
     @BeforeEach

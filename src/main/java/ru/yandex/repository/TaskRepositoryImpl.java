@@ -2,6 +2,7 @@ package ru.yandex.repository;
 
 import lombok.RequiredArgsConstructor;
 import ru.yandex.model.Task;
+import ru.yandex.utils.IdGenerator;
 
 import java.util.Collections;
 import java.util.List;
@@ -11,6 +12,7 @@ import java.util.Optional;
 public class TaskRepositoryImpl implements TaskRepository<Task> {
 
     private final List<Task> taskStorage;
+    private final IdGenerator idGenerator;
 
     @Override
     public List<Task> findAll() {
@@ -24,7 +26,7 @@ public class TaskRepositoryImpl implements TaskRepository<Task> {
 
     @Override
     public Task create(Task task) {
-        int id = getIncrementedId();
+        int id = idGenerator.generateId();
         task.setId(id);
         taskStorage.add(task);
 
@@ -57,14 +59,6 @@ public class TaskRepositoryImpl implements TaskRepository<Task> {
     @Override
     public void deleteBatch() {
         taskStorage.clear();
-    }
-
-    private int getIncrementedId() {
-        try {
-            return taskStorage.get(taskStorage.size() - 1).getId() + 1;
-        } catch (NullPointerException | IndexOutOfBoundsException ignored) {
-            return 1;
-        }
     }
 
 }
