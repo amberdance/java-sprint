@@ -14,8 +14,8 @@ import java.util.List;
 public class TaskServiceImpl implements TaskService {
 
     private final TaskRepository<Task> taskRepository;
-    private final TaskRepository<Epic> epicEpicRepository;
-    private final TaskRepository<Subtask> subtaskSubtaskRepository;
+    private final TaskRepository<Epic> epicRepository;
+    private final TaskRepository<Subtask> subtaskRepository;
 
     @Override
     public List<Task> getTasks() {
@@ -24,12 +24,12 @@ public class TaskServiceImpl implements TaskService {
 
     @Override
     public List<Epic> getEpics() {
-        return epicEpicRepository.findAll();
+        return epicRepository.findAll();
     }
 
     @Override
     public List<Subtask> getSubtasks() {
-        return subtaskSubtaskRepository.findAll();
+        return subtaskRepository.findAll();
     }
 
     @Override
