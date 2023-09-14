@@ -16,7 +16,7 @@ public class EpicRepositoryImpl implements TaskRepository<Epic> {
 
     private final List<Task> taskStorage;
     private final IdGenerator idGenerator;
-    private final Predicate<Task> filterByClass = Epic.class::isInstance;
+    private final Predicate<Task> filterByClass = task -> task.getClass().equals(Epic.class);
     private final Function<Task, Epic> classMapper = Epic.class::cast;
 
     @Override
@@ -30,14 +30,17 @@ public class EpicRepositoryImpl implements TaskRepository<Epic> {
     @Override
     public Optional<Epic> findById(int id) {
         return taskStorage.stream()
-                .filter(filterByClass)
+                .filter(t -> filterByClass.test(t) && t.getId() == id)
                 .map(classMapper)
-                .filter(t -> t.getId() == id)
                 .findFirst();
     }
 
     @Override
     public Epic create(Epic epic) {
+        if (!filterByClass.test(epic)) {
+            return epic;
+        }
+
         epic.setId(idGenerator.generateId());
         taskStorage.add(epic);
 
@@ -50,8 +53,15 @@ public class EpicRepositoryImpl implements TaskRepository<Epic> {
 
         if (epicOptional.isPresent()) {
             var updatedEpic = epicOptional.get();
-            updatedEpic.setName(epic.getName());
-            updatedEpic.setDescription(epic.getDescription());
+
+            if (updatedEpic.getName() != null) {
+                updatedEpic.setName(epic.getName());
+            }
+
+            if (updatedEpic.getDescription() != null) {
+                updatedEpic.setDescription(epic.getDescription());
+            }
+
             updatedEpic.setStatus(epic.getStatus());
             updatedEpic.setSubtasks(epic.getSubtasks());
 

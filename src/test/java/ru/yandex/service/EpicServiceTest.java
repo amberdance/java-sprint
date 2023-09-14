@@ -12,15 +12,13 @@ import ru.yandex.model.Task;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static ru.yandex.model.Task.Status;
 
 public class EpicServiceTest extends AbstractServiceTest {
 
-    protected static final int TASKS_TO_CREATE_COUNT = 3;
-    private static final int EPICS_TO_CREATE_COUNT = 3;
-    private static final int SUBTASKS_TO_CREATE_COUNT = 3;
+    protected static final int COUNT_OF_TASKS = 3;
+    private static final int COUNT_OF_EPICS = 3;
     private static EpicService epicService;
 
 
@@ -33,42 +31,27 @@ public class EpicServiceTest extends AbstractServiceTest {
     void beforeEach() {
         dataSource.clear();
 
-        for (int i = 1; i <= EPICS_TO_CREATE_COUNT; i++) {
-            var name = NAME_PREFIX + i;
-            var descr = "Description_" + i;
-
-            epicService.createEpic(new Epic(name, descr,
-                    List.of(new Subtask(name, descr), new Subtask(name, descr), new Subtask(name, descr))));
-
+        for (int i = 1; i <= COUNT_OF_EPICS; i++) {
+            epicService.createEpic(new Epic(NAME_PREFIX + i, "Description_" + i,
+                    List.of(new Subtask(), new Subtask(), new Subtask())));
         }
 
-        for (int i = 0; i < TASKS_TO_CREATE_COUNT; i++) {
+        // Добавляются обычные задачи, чтобы убедиться, что удаление производится только над эпиками
+        for (int i = 0; i < COUNT_OF_TASKS; i++) {
             var task = new Task();
             task.setId(idGenerator.generateId());
             dataSource.add(task);
         }
-
-        for (int i = 0; i < SUBTASKS_TO_CREATE_COUNT; i++) {
-            var subtask = new Subtask();
-
-        }
     }
 
     @Test
-    @DisplayName("Должен вернуть эпик по заданному существующему id")
+    @DisplayName("Должен вернуть эпик по заданному id")
     void getEpic() {
-        var epic = epicService.getEpic(EPICS_TO_CREATE_COUNT);
+        var epic = epicService.getEpic(1);
 
-        assertNotNull(epic);
-        assertEquals(EPICS_TO_CREATE_COUNT, epic.getId());
-        assertEquals(NAME_PREFIX + EPICS_TO_CREATE_COUNT, epic.getName());
+        assertEquals(1, epic.getId());
         assertEquals(3, epic.getSubtasks().size());
-    }
-
-    @Test
-    @DisplayName("Количество возвращенных эпиков == количеству эпиков в хранилище")
-    void getEpics() {
-        assertEquals(EPICS_TO_CREATE_COUNT, epicService.getEpics().size());
+        assertEquals(NAME_PREFIX + 1, epic.getName());
     }
 
     @Test
@@ -78,29 +61,33 @@ public class EpicServiceTest extends AbstractServiceTest {
     }
 
     @Test
-    @DisplayName("Должен создать эпик и сгенерировать id")
-    void createEpic() {
-        var epic =
-                epicService.createEpic(new Epic("NAME", "DESCRIPTION", List.of(new Subtask("Subtask", "Description"))));
+    @DisplayName("Количество возвращенных эпиков == количеству эпиков в хранилище")
+    void getEpics() {
+        var epicsCount = (int) dataSource.stream().filter(e -> e.getClass().equals(Epic.class)).count();
 
-        assertEquals(EPICS_TO_CREATE_COUNT + TASKS_TO_CREATE_COUNT + 1, epic.getId());
-        assertEquals(EPICS_TO_CREATE_COUNT + 1, epicService.getEpics().size());
+        assertEquals(epicsCount, epicService.getEpics().size());
+    }
+
+    @Test
+    @DisplayName("Должен создать эпик, подзадачи, связать их с эпиком и сгенерировать для всех id")
+    void createEpic() {
+        var epic = epicService.createEpic(new Epic("NAME", "DESCRIPTION",
+                List.of(new Subtask("Subtask", "Description"))));
+        assertEquals(dataSource.size() - 1, epic.getId());
+        assertEquals(COUNT_OF_EPICS + 1, epicService.getEpics().size());
         assertEquals(1, epic.getSubtasks().size());
     }
 
     @Test
     @DisplayName("Должен обновлять поля эпика")
     void updateEpic() {
-        var epic = epicService.getEpic(EPICS_TO_CREATE_COUNT);
+        var epic = epicService.getEpic(1);
         epic.setName("UPDATED_NAME");
         epic.setDescription("UPDATED_DESCRIPTION");
         epic.setStatus(Status.IN_PROGRESS);
         epic.setSubtasks(List.of(new Subtask("Subtask", "Description")));
 
-        epicService.updateEpic(epic);
-
-        var updatedEpic = epicService.getEpic(EPICS_TO_CREATE_COUNT);
-
+        var updatedEpic = epicService.updateEpic(epic);
         assertEquals(epic.getName(), updatedEpic.getName());
         assertEquals(epic.getDescription(), updatedEpic.getDescription());
         assertEquals(Task.Status.IN_PROGRESS, updatedEpic.getStatus());
@@ -110,16 +97,16 @@ public class EpicServiceTest extends AbstractServiceTest {
     @Test
     @DisplayName("Должен удалять эпик по id")
     void deleteEpic() {
-        assertEquals(EPICS_TO_CREATE_COUNT, epicService.getEpics().size());
+        assertEquals(COUNT_OF_EPICS, epicService.getEpics().size());
         epicService.deleteEpic(1);
-        assertEquals(EPICS_TO_CREATE_COUNT - 1, epicService.getEpics().size());
+        assertEquals(COUNT_OF_EPICS - 1, epicService.getEpics().size());
     }
 
     @Test
     @DisplayName("Должен удалять все эпики")
     void deleteEpics() {
         epicService.deleteEpics();
-        assertEquals(TASKS_TO_CREATE_COUNT, dataSource.size());
+        assertEquals(COUNT_OF_TASKS, dataSource.size());
     }
 
     @Test

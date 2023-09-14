@@ -10,7 +10,6 @@ import ru.yandex.model.Subtask;
 import ru.yandex.model.Task;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static ru.yandex.model.Task.Status;
 
@@ -52,7 +51,7 @@ class SubtaskServiceTest extends AbstractServiceTest {
     @DisplayName("Должен вернуть подзадачу по заданному существующему id")
     void getSubtask() {
         var subtask = subtaskService.getSubtask(SUBTASKS_TO_CREATE_COUNT);
-        assertNotNull(subtask);
+
         assertEquals(SUBTASKS_TO_CREATE_COUNT, subtask.getId());
         assertEquals(NAME_PREFIX + SUBTASKS_TO_CREATE_COUNT, subtask.getName());
     }
