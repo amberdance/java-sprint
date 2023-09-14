@@ -100,7 +100,6 @@ public class EpicServiceTest extends AbstractServiceTest {
     @DisplayName("Если все подзадачи DONE, то эпик тоже должен быть DONE")
     void updateStatusDoneTest() {
         var epic = epicService.getEpic(1);
-
         epic.getSubtasks().forEach(s -> s.setStatus(Status.DONE));
         epicService.updateEpic(epic);
 
@@ -108,7 +107,17 @@ public class EpicServiceTest extends AbstractServiceTest {
     }
 
     @Test
-    @DisplayName("Должен удалять эпик по id")
+    @DisplayName("Если есть подзадача IN_PROGRESS, то эпик тоже должен быть IN_PROGRESS")
+    void updateStatusInProgressTest() {
+        var epic = epicService.getEpic(1);
+        epic.getSubtasks().get(0).setStatus(Status.IN_PROGRESS);
+        epicService.updateEpic(epic);
+
+        assertEquals(Status.IN_PROGRESS, epic.getStatus());
+    }
+
+    @Test
+    @DisplayName("Должен удалять эпик по id и связанные с ним подзадачи")
     void deleteEpic() {
         assertEquals(COUNT_OF_EPICS, epicService.getEpics().size());
         epicService.deleteEpic(1);
