@@ -30,9 +30,8 @@ public class SubtaskRepositoryImpl implements TaskRepository<Subtask> {
     @Override
     public Optional<Subtask> findById(int id) {
         return taskStorage.stream()
-                .filter(filterByClass)
+                .filter(t -> filterByClass.test(t) && t.getId() == id)
                 .map(classMapper)
-                .filter(t -> t.getId() == id)
                 .findFirst();
     }
 
