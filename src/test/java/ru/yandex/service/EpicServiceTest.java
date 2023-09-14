@@ -11,8 +11,7 @@ import ru.yandex.model.Task;
 
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.*;
 import static ru.yandex.model.Task.Status;
 
 public class EpicServiceTest extends AbstractServiceTest {
@@ -54,6 +53,7 @@ public class EpicServiceTest extends AbstractServiceTest {
         assertEquals(NAME_PREFIX + 1, epic.getName());
     }
 
+
     @Test
     @DisplayName("При несуществующем id выбрасывается исключение")
     void shouldThrowsExceptionWhenEpicNotFound() {
@@ -76,6 +76,8 @@ public class EpicServiceTest extends AbstractServiceTest {
         assertEquals(dataSource.size() - 1, epic.getId());
         assertEquals(COUNT_OF_EPICS + 1, epicService.getEpics().size());
         assertEquals(1, epic.getSubtasks().size());
+
+        epic.getSubtasks().forEach(s -> assertTrue(s.getEpicId() == epic.getId() && s.getId() != 0));
     }
 
     @Test
