@@ -79,6 +79,16 @@ public class TaskServiceImpl implements TaskService {
 
     @Override
     public Epic updateEpic(Epic epic) {
+        var subtasks = epic.getSubtasks();
+        var hasSubtasks = subtasks.size() > 0;
+
+        if (epic.getStatus().equals(Task.Status.DONE) && hasSubtasks) {
+            subtasks.forEach(s -> {
+                s.setStatus(Task.Status.DONE);
+                subtaskRepository.update(s);
+            });
+        }
+
         return epicRepository.update(epic);
     }
 

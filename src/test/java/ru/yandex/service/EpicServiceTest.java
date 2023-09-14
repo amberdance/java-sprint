@@ -97,6 +97,17 @@ public class EpicServiceTest extends AbstractServiceTest {
     }
 
     @Test
+    @DisplayName("При установке статуса DONE эпику должны обновляться и связанные подзадачи")
+    void updateStatusDoneTest(){
+        var epic = epicService.getEpic(1);
+        epic.setStatus(Status.DONE);
+        epicService.updateEpic(epic);
+
+        epic.getSubtasks().forEach(s -> assertEquals(Status.DONE, s.getStatus()));
+
+    }
+
+    @Test
     @DisplayName("Должен удалять эпик по id")
     void deleteEpic() {
         assertEquals(COUNT_OF_EPICS, epicService.getEpics().size());
