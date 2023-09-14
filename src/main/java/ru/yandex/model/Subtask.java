@@ -1,10 +1,6 @@
 package ru.yandex.model;
 
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 
 
 @Getter
@@ -16,13 +12,17 @@ public class Subtask extends Epic {
 
     private int epicId;
 
-    public Subtask(int epicId, String name, String description) {
+    public Subtask(int epicId) {
+        this.epicId = epicId;
+    }
+
+    public Subtask(int epicId, @NonNull String name, @NonNull String description) {
         this.epicId = epicId;
         this.name = name;
         this.description = description;
     }
 
-    public Subtask(String name, String description) {
+    public Subtask(@NonNull String name, @NonNull String description) {
         this.name = name;
         this.description = description;
     }

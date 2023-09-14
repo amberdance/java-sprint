@@ -3,6 +3,7 @@ package ru.yandex.model;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.NonNull;
 import lombok.Setter;
 import lombok.ToString;
 
@@ -19,12 +20,12 @@ public class Epic extends Task {
 
     private List<Subtask> subtasks = new ArrayList<>();
 
-    public Epic(String name, String description) {
+    public Epic(@NonNull String name, @NonNull String description) {
         this.name = name;
         this.description = description;
     }
 
-    public Epic(String name, String description, List<Subtask> subtasks) {
+    public Epic(@NonNull String name, @NonNull String description, List<Subtask> subtasks) {
         this.name = name;
         this.description = description;
         this.subtasks = subtasks;
