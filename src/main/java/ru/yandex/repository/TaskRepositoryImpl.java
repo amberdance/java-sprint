@@ -44,10 +44,6 @@ public class TaskRepositoryImpl implements TaskRepository<Task> {
 
     @Override
     public Task update(Task task) {
-        if (!taskFilter.test(task)) {
-            return task;
-        }
-
         var taskOptional = findById(task.getId());
 
         if (taskOptional.isPresent()) {
