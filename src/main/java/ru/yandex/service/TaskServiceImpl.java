@@ -82,14 +82,15 @@ public class TaskServiceImpl implements TaskService {
         var subtasks = epic.getSubtasks();
         var hasSubtasks = subtasks.size() > 0;
 
-        if (epic.getStatus().equals(Task.Status.DONE) && hasSubtasks) {
-            subtasks.forEach(s -> {
-                s.setStatus(Task.Status.DONE);
-                subtaskRepository.update(s);
-            });
+        if (hasSubtasks && allSubtasksDone(epic)) {
+            epic.setStatus(Task.Status.DONE);
         }
 
         return epicRepository.update(epic);
+    }
+
+    private boolean allSubtasksDone(Epic epic) {
+        return epic.getSubtasks().stream().allMatch(s -> s.getStatus().equals(Task.Status.DONE));
     }
 
     @Override
