@@ -15,7 +15,7 @@ import java.util.List;
 
 public class AbstractServiceTest {
 
-    protected static final int TASKS_TO_CREATE_COUNT = 5;
+    protected static final int COUNT_OF_TASKS = 5;
     protected static final String NAME_PREFIX = "Name_";
     protected static final List<Task> dataSource = new ArrayList<>();
     protected static final IdGenerator idGenerator = new ArrayListIdGenerator(dataSource);

@@ -9,10 +9,7 @@ import ru.yandex.model.Epic;
 import ru.yandex.model.Subtask;
 import ru.yandex.model.Task;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.junit.jupiter.api.Assertions.assertThrows;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 import static ru.yandex.model.Task.Status;
 
 class TaskServiceTest extends AbstractServiceTest {
@@ -29,35 +26,37 @@ class TaskServiceTest extends AbstractServiceTest {
     void beforeEach() {
         dataSource.clear();
 
-        for (int i = 1; i <= TASKS_TO_CREATE_COUNT; i++) {
+        for (int i = 1; i <= COUNT_OF_TASKS; i++) {
             taskService.createTask(new Task(NAME_PREFIX + i, "Description_" + i));
+            var epic = new Epic();
+            taskService.createEpic(epic);
+            taskService.createSubtask(new Subtask(epic.getId()));
         }
     }
 
     @Test
     @DisplayName("Количество возвращенных задач == количеству задач в хранилище")
     void getTasks() {
-        assertEquals(TASKS_TO_CREATE_COUNT, taskService.getTasks().size());
+        assertEquals(COUNT_OF_TASKS, taskService.getTasks().size());
     }
 
     @Test
-    @DisplayName("Должен вернуть таску по заданному существующему id")
+    @DisplayName("Должен вернуть задачу по заданному id")
     void getTask() {
-        var task = taskService.getTask(TASKS_TO_CREATE_COUNT);
+        var task = taskService.getTask(1);
 
-        assertNotNull(task);
-        assertEquals(TASKS_TO_CREATE_COUNT, task.getId());
-        assertEquals(NAME_PREFIX + TASKS_TO_CREATE_COUNT, task.getName());
+        assertEquals(1, task.getId());
+        assertEquals(NAME_PREFIX + 1, task.getName());
     }
 
     @Test
     @DisplayName("При несуществующем id выбрасывается исключение")
     void shouldThrowsExceptionWhenTaskNotFound() {
-        assertThrows(TaskNotFoundException.class, () -> taskService.getTask(999));
+        assertThrows(TaskNotFoundException.class, () -> taskService.getTask(COUNT_OF_TASKS));
     }
 
     @Test
-    @DisplayName("Должен создать новую таску и задать последующий id")
+    @DisplayName("Должен создать новую задачу и задать последующий id")
     void createTask() {
         var taskToCreate = new Task();
         taskToCreate.setName("NAME");
@@ -66,21 +65,21 @@ class TaskServiceTest extends AbstractServiceTest {
         taskService.createTask(taskToCreate);
         var task = taskService.getTask(taskToCreate.getId());
 
-        assertEquals(TASKS_TO_CREATE_COUNT + 1, task.getId());
-        assertEquals(TASKS_TO_CREATE_COUNT + 1, taskService.getTasks().size());
+        assertTrue(task.getId() > COUNT_OF_TASKS);
+        assertEquals(COUNT_OF_TASKS + 1, taskService.getTasks().size());
     }
 
     @Test
-    @DisplayName("Должен обновлять поля таски")
+    @DisplayName("Должен обновлять поля задачии")
     void updateTask() {
-        var task = taskService.getTask(TASKS_TO_CREATE_COUNT);
+        var task = taskService.getTask(1);
         task.setName("UPDATED_NAME");
         task.setDescription("UPDATED_DESCRIPTION");
         task.setStatus(Status.IN_PROGRESS);
 
         taskService.updateTask(task);
 
-        var updatedTask = taskService.getTask(TASKS_TO_CREATE_COUNT);
+        var updatedTask = taskService.getTask(1);
 
         assertEquals(task.getName(), updatedTask.getName());
         assertEquals(task.getDescription(), updatedTask.getDescription());
@@ -88,17 +87,25 @@ class TaskServiceTest extends AbstractServiceTest {
     }
 
     @Test
-    @DisplayName("Должен удалять таску по id")
+    @DisplayName("Должен удалять задачу по id")
     void deleteTask() {
-        assertEquals(TASKS_TO_CREATE_COUNT, taskService.getTasks().size());
+        assertEquals(COUNT_OF_TASKS, taskService.getTasks().size());
         taskService.deleteTask(1);
-        assertEquals(TASKS_TO_CREATE_COUNT - 1, taskService.getTasks().size());
+        assertEquals(COUNT_OF_TASKS - 1, taskService.getTasks().size());
     }
 
     @Test
-    @DisplayName("Должен удалять все таски")
+    @DisplayName("Если задан id не задачи, а наследника, то ничего не удаляется")
+    void shouldThrewExceptionWhenIdNotExists() {
+        var countBefore = dataSource.size();
+        taskService.deleteTask(COUNT_OF_TASKS + 1);
+        assertEquals(countBefore, dataSource.size());
+    }
+
+    @Test
+    @DisplayName("Должен удалять все задачи")
     void deleteTasks() {
-        assertEquals(TASKS_TO_CREATE_COUNT, taskService.getTasks().size());
+        assertEquals(COUNT_OF_TASKS, taskService.getTasks().size());
         taskService.deleteTasks();
         assertTrue(taskService.getTasks().isEmpty());
     }
@@ -114,23 +121,9 @@ class TaskServiceTest extends AbstractServiceTest {
     }
 
     @Test
-    @DisplayName("Должен возвращать только список эпиков")
-    void getEpicTasks() {
-        taskService.createTask(new Epic("epic", "epic"));
-        assertEquals(1, taskService.getEpics().size());
-    }
-
-    @Test
-    @DisplayName("Должен возвращать только список подзадача")
-    void getSubtasks() {
-        taskService.createTask(new Subtask("subtask", "subtask"));
-        assertEquals(1, taskService.getSubtasks().size());
-    }
-
-    @Test
     @DisplayName("Должен обновлять статус на указанный")
     void updateStatus() {
-        var task = taskService.getTask(TASKS_TO_CREATE_COUNT);
+        var task = taskService.getTask(1);
 
         assertEquals(Status.NEW, task.getStatus());
         taskService.updateStatus(task, Status.IN_PROGRESS);

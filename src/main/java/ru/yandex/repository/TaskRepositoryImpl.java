@@ -4,30 +4,39 @@ import lombok.RequiredArgsConstructor;
 import ru.yandex.model.Task;
 import ru.yandex.utils.IdGenerator;
 
-import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
+import java.util.function.Predicate;
+import java.util.stream.Collectors;
 
 @RequiredArgsConstructor
 public class TaskRepositoryImpl implements TaskRepository<Task> {
 
     private final List<Task> taskStorage;
     private final IdGenerator idGenerator;
+    private final Predicate<Task> taskFilter = task -> task.getClass().equals(Task.class);
 
     @Override
     public List<Task> findAll() {
-        return Collections.unmodifiableList(taskStorage);
+        return taskStorage.stream()
+                .filter(taskFilter)
+                .collect(Collectors.toUnmodifiableList());
     }
 
     @Override
     public Optional<Task> findById(int id) {
-        return taskStorage.stream().filter(t -> t.getId() == id).findFirst();
+        return taskStorage.stream()
+                .filter(t -> t.getId() == id && taskFilter.test(t))
+                .findFirst();
     }
 
     @Override
     public Task create(Task task) {
-        int id = idGenerator.generateId();
-        task.setId(id);
+        if (!taskFilter.test(task)) {
+            return task;
+        }
+
+        task.setId(idGenerator.generateId());
         taskStorage.add(task);
 
         return task;
@@ -35,6 +44,10 @@ public class TaskRepositoryImpl implements TaskRepository<Task> {
 
     @Override
     public Task update(Task task) {
+        if (!taskFilter.test(task)) {
+            return task;
+        }
+
         var taskOptional = findById(task.getId());
 
         if (taskOptional.isPresent()) {
@@ -58,7 +71,7 @@ public class TaskRepositoryImpl implements TaskRepository<Task> {
 
     @Override
     public void deleteBatch() {
-        taskStorage.clear();
+        taskStorage.removeAll(findAll());
     }
 
 }

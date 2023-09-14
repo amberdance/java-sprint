@@ -52,8 +52,18 @@ public class TaskServiceImpl implements TaskService {
     }
 
     @Override
-    public Epic createEpic(Epic epic) {
-        return epicRepository.create(epic);
+    public Epic createEpic(Epic epicCreate) {
+        var epic = epicRepository.create(epicCreate);
+        var subtasks = epic.getSubtasks();
+
+        if (subtasks.size() > 0) {
+            subtasks.forEach(s -> {
+                s.setEpicId(epic.getId());
+                subtaskRepository.create(s);
+            });
+        }
+
+        return epic;
     }
 
     @Override
