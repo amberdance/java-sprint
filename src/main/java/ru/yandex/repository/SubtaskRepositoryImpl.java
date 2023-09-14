@@ -53,7 +53,6 @@ public class SubtaskRepositoryImpl implements TaskRepository<Subtask> {
             updatedSubtask.setName(subtask.getName());
             updatedSubtask.setDescription(subtask.getDescription());
             updatedSubtask.setStatus(subtask.getStatus());
-            updatedSubtask.setSubtasks(subtask.getSubtasks());
 
             taskStorage.set(subtask.getId() - 1, updatedSubtask);
 
