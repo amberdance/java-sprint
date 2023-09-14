@@ -108,11 +108,23 @@ class SubtaskServiceTest extends AbstractServiceTest {
     }
 
     @Test
+    @DisplayName("При удалении подзадачи она удаляется из эпика")
+    void deleteSubtaskFromEpic() {
+        var subtask = subtaskService.getSubtask(TASKS_TO_CREATE_COUNT);
+        var epic = epicService.getEpic(1);
+        var subtasksCountBefore = epic.getSubtasks().size();
+
+        subtaskService.deleteSubtask(subtask.getId());
+        assertEquals(subtasksCountBefore - 1, epic.getSubtasks().size());
+
+    }
+
+    @Test
     @DisplayName("Должен удалять все подзадачи")
     void deleteSubtasks() {
         subtaskService.deleteSubtasks();
 
-        // +1 id на создание Эпика, который не учитывается тоже
+        // +1 id на создание Эпика, который не учитывается
         assertEquals(TASKS_TO_CREATE_COUNT + 1, dataSource.size());
     }
 

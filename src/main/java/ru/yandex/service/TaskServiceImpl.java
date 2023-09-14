@@ -134,6 +134,13 @@ public class TaskServiceImpl implements TaskService {
 
     @Override
     public void deleteSubtask(int id) {
+        var subtaskOptional = subtaskRepository.findById(id);
+
+        if (subtaskOptional.isPresent()) {
+            var epicOptional = epicRepository.findById(subtaskOptional.get().getEpicId());
+            epicOptional.ifPresent(epic -> epic.getSubtasks().remove(subtaskOptional.get()));
+        }
+
         subtaskRepository.delete(id);
     }
 
