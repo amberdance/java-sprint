@@ -7,8 +7,6 @@ import lombok.NonNull;
 import lombok.Setter;
 import lombok.ToString;
 
-import java.util.List;
-
 
 @Getter
 @Setter
@@ -17,13 +15,17 @@ import java.util.List;
 @EqualsAndHashCode(callSuper = true)
 public class Epic extends Task {
 
+
+    public Epic(int id, @NonNull String name, @NonNull String description) {
+        this.id = id;
+        this.name = name;
+        this.description = description;
+    }
+
     public Epic(@NonNull String name, @NonNull String description) {
         this.name = name;
         this.description = description;
     }
 
-    public Epic(@NonNull String name, @NonNull String description, List<Subtask> subtasks) {
-        this.name = name;
-        this.description = description;
-    }
+
 }

@@ -1,6 +1,11 @@
 package ru.yandex;
 
-import lombok.*;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.NonNull;
+import lombok.Setter;
+import lombok.ToString;
 
 
 @Getter
@@ -12,9 +17,13 @@ public class Subtask extends Epic {
 
     private int epicId;
 
-    public Subtask(int epicId) {
+    public Subtask(int id, int epicId, @NonNull String name, @NonNull String description) {
+        this.id = id;
         this.epicId = epicId;
+        this.name = name;
+        this.description = description;
     }
+
 
     public Subtask(int epicId, @NonNull String name, @NonNull String description) {
         this.epicId = epicId;
@@ -22,8 +31,4 @@ public class Subtask extends Epic {
         this.description = description;
     }
 
-    public Subtask(@NonNull String name, @NonNull String description) {
-        this.name = name;
-        this.description = description;
-    }
 }
