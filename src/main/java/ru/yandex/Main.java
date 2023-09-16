@@ -1,9 +1,5 @@
 package ru.yandex;
 
-import ru.yandex.model.Epic;
-import ru.yandex.model.Subtask;
-import ru.yandex.model.Task;
-
 import java.util.HashMap;
 
 public class Main {
