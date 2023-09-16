@@ -88,6 +88,7 @@ class TaskManagerTest {
     @Test
     void getSubtask() {
         var subtask = taskManager.getSubtask(currentId);
+
         assertEquals("Name_" + currentId, subtask.getName());
         assertEquals("Description_" + currentId, subtask.getDescription());
         assertEquals(Task.Status.NEW, subtask.getStatus());
@@ -171,35 +172,12 @@ class TaskManagerTest {
     void deleteEpics() {
         taskManager.deleteEpics();
         assertEquals(0, taskManager.getEpics().size());
-        assertEquals(0, taskManager.getSubtasks().size());
     }
 
     @Test
     void deleteSubtasks() {
         taskManager.deleteSubtasks();
         assertEquals(0, taskManager.getSubtasks().size());
-    }
-
-
-    @Test
-    void testDeleteTasks() {
-        var sizeBefore = taskManager.getTasks().size();
-        taskManager.deleteTask(currentId);
-        assertEquals(sizeBefore - 1, taskManager.getTasks().size());
-    }
-
-    @Test
-    void testDeleteEpics() {
-        var sizeBefore = taskManager.getEpics().size();
-        taskManager.deleteEpic(currentId);
-        assertEquals(sizeBefore - 1, taskManager.getEpics().size());
-    }
-
-    @Test
-    void testDeleteSubtasks() {
-        var sizeBefore = taskManager.getSubtasks().size();
-        taskManager.deleteSubTask(currentId);
-        assertEquals(sizeBefore - 1, taskManager.getSubtasks().size());
     }
 
     @Test

@@ -106,12 +106,6 @@ public class TaskManager {
 
     public void deleteEpic(int id) {
         epics.remove(id);
-
-        for (Subtask subtask : subtasks.values()) {
-            if (subtask.getEpicId() == id) {
-                subtasks.remove(id);
-            }
-        }
     }
 
     public void deleteSubTask(int id) {
@@ -123,12 +117,6 @@ public class TaskManager {
     }
 
     public void deleteEpics() {
-        for (Integer id : epics.keySet()) {
-            if (id != null) {
-                subtasks.remove(id);
-            }
-        }
-
         epics.clear();
     }
 
