@@ -198,23 +198,26 @@ class TaskManagerTest {
 
     @Test
     void testDeleteTask() {
-        var sizeBefore = taskManager.getTasks().size();
+        var sizeBefore = tasks.size();
         taskManager.deleteTask(currentId);
-        assertEquals(sizeBefore - 1, taskManager.getTasks().size());
+        assertEquals(sizeBefore - 1, tasks.size());
     }
 
     @Test
     void testDeleteEpic() {
-        var sizeBefore = taskManager.getEpics().size();
+        var sizeBefore = epics.size();
         taskManager.deleteEpic(currentId);
-        assertEquals(sizeBefore - 1, taskManager.getEpics().size());
+        assertEquals(sizeBefore - 1, epics.size());
     }
 
     @Test
-    void testDeleteSubtask() {
-        var sizeBefore = taskManager.getSubtasks().size();
-        taskManager.deleteSubTask(currentId);
-        assertEquals(sizeBefore - 1, taskManager.getSubtasks().size());
+    void deleteSubtask() {
+        var sizeBefore = subtasks.size();
+        var epicSubtasksIdsBefore = epics.get(currentId).getSubtaskIds().size();
+
+        taskManager.deleteSubtask(currentId);
+        assertEquals(sizeBefore - 1, subtasks.size());
+        assertEquals(epicSubtasksIdsBefore - 1, epics.get(currentId).getSubtaskIds().size());
     }
 
     @Test

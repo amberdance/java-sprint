@@ -120,7 +120,6 @@ public class TaskManager {
     public void deleteEpic(int id) {
         epics.remove(id);
 
-        // В задании не сказано, что при удалении эпика, должны удаляться подзадачи эпика
         for (Subtask subtask : subtasks.values()) {
             if (subtask.getEpicId() == id) {
                 subtasks.remove(id);
@@ -128,7 +127,9 @@ public class TaskManager {
         }
     }
 
-    public void deleteSubTask(int id) {
+    public void deleteSubtask(int id) {
+        var epicId = subtasks.get(id).getEpicId();
+        epics.get(epicId).getSubtaskIds().remove(((Integer) id));
         subtasks.remove(id);
     }
 
@@ -137,7 +138,6 @@ public class TaskManager {
     }
 
     public void deleteEpics() {
-        // В задании не сказано, что при удалении эпика, должны удаляться подзадачи эпика
         subtasks.clear();
         epics.clear();
     }
