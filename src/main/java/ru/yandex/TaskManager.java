@@ -88,15 +88,41 @@ public class TaskManager {
         epic.setName(epicToUpdate.getName());
         epic.setDescription(epicToUpdate.getDescription());
 
-        var hasAllSubtasksStatusDone = getSubtasksByEpicId(epic.getId()).stream()
-                .allMatch(s -> s.getStatus().equals(Task.Status.DONE));
-
-        if (hasAllSubtasksStatusDone) {
-            subtasks.values().forEach(s -> s.setStatus(Task.Status.DONE));
+        if (allEpicSubtasksHasStatusDone(epicToUpdate.getSubtaskIds())) {
+            epicToUpdate.setStatus(Task.Status.DONE);
+        } else if (anyEpicSubtaskHasStatusInProgress(epicToUpdate.getSubtaskIds())) {
+            epicToUpdate.setStatus(Task.Status.IN_PROGRESS);
         }
 
         return epic;
     }
+
+    private boolean allEpicSubtasksHasStatusDone(List<Integer> subtaskIds) {
+        for (Integer subtaskId : subtaskIds) {
+            if (!subtasks.get(subtaskId).getStatus().equals(Task.Status.DONE)) {
+                return false;
+            }
+        }
+
+        return true;
+    }
+
+    private boolean anyEpicSubtaskHasStatusInProgress(List<Integer> subtaskIds) {
+        for (Integer subtaskId : subtaskIds) {
+            if (subtasks.get(subtaskId).getStatus().equals(Task.Status.IN_PROGRESS)) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    private void updateEpicSubtasksStatus(Task.Status status, List<Integer> subtaskIds) {
+        for (Integer subtaskId : subtaskIds) {
+            subtasks.get(subtaskId).setStatus(status);
+        }
+    }
+
 
     public Subtask updateSubtask(Subtask subtaskToUpdate) {
         var subtask = Objects.requireNonNull(subtasks.get(subtaskToUpdate.getId()));
