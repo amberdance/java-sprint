@@ -20,15 +20,15 @@ public class TaskManager {
 
 
     public Task getTask(int id) {
-        return Objects.requireNonNull(tasks.get(id));
+        return tasks.getOrDefault(id, null);
     }
 
     public Epic getEpic(int id) {
-        return Objects.requireNonNull(epics.get(id));
+        return epics.getOrDefault(id, null);
     }
 
     public Subtask getSubtask(int id) {
-        return Objects.requireNonNull(subtasks.get(id));
+        return subtasks.getOrDefault(id, null);
     }
 
     public List<Subtask> getSubtasksByEpicId(int epicId) {

@@ -14,6 +14,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNull;
 
 class TaskManagerTest {
 
@@ -74,6 +75,8 @@ class TaskManagerTest {
         assertEquals("Name_" + currentId, task.getName());
         assertEquals("Description_" + currentId, task.getDescription());
         assertEquals(Task.Status.NEW, task.getStatus());
+
+        assertNull(taskManager.getTask(999999));
     }
 
     @Test
@@ -83,6 +86,9 @@ class TaskManagerTest {
         assertEquals("Name_" + currentId, epic.getName());
         assertEquals("Description_" + currentId, epic.getDescription());
         assertEquals(Task.Status.NEW, epic.getStatus());
+
+        assertNull(taskManager.getEpic(999999));
+
     }
 
     @Test
@@ -92,6 +98,9 @@ class TaskManagerTest {
         assertEquals("Name_" + currentId, subtask.getName());
         assertEquals("Description_" + currentId, subtask.getDescription());
         assertEquals(Task.Status.NEW, subtask.getStatus());
+
+        assertNull(taskManager.getSubtask(999999));
+
     }
 
     @Test
