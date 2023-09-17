@@ -45,9 +45,12 @@ class TaskManagerTest {
 
             tasks.put(id, new Task(id, name, description));
             var epic = new Epic(id, name, description);
-
             epics.put(id, epic);
-            subtasks.put(id, new Subtask(id, epic.getId(), name, description));
+
+            for (int j = 0; j < COUNT_OF_TASKS; j++) {
+                subtasks.put(id, new Subtask(id, epic.getId(), name, description));
+                epic.getSubtaskIds().add(id);
+            }
         }
 
         currentId = idGenerator.getCurrentId() - 1;
@@ -100,7 +103,6 @@ class TaskManagerTest {
         assertEquals(Task.Status.NEW, subtask.getStatus());
 
         assertNull(taskManager.getSubtask(999999));
-
     }
 
     @Test
@@ -118,9 +120,13 @@ class TaskManagerTest {
 
     @Test
     void createSubtask() {
-        var epic = new Epic();
+        int id = idGenerator.generateId();
+        var epic = new Epic(id, "name", "description");
+        epics.put(id, epic);
+
         taskManager.createSubtask(new Subtask(epic.getId(), "SOME", "DESCRIPTION"));
         assertEquals(COUNT_OF_TASKS + 1, taskManager.getSubtasks().size());
+        assertEquals(Task.Status.IN_PROGRESS, epic.getStatus() );
     }
 
     @Test

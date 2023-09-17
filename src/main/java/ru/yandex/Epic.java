@@ -1,11 +1,9 @@
 package ru.yandex;
 
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.NonNull;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
+
+import java.util.ArrayList;
+import java.util.List;
 
 
 @Getter
@@ -15,6 +13,7 @@ import lombok.ToString;
 @EqualsAndHashCode(callSuper = true)
 public class Epic extends Task {
 
+    List<Integer> subtaskIds = new ArrayList<>();
 
     public Epic(int id, @NonNull String name, @NonNull String description) {
         this.id = id;

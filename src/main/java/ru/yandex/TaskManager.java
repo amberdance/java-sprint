@@ -45,18 +45,32 @@ public class TaskManager {
     }
 
     public Epic createEpic(Epic epic) {
-        epics.put(idGenerator.generateId(), epic);
+        int id = idGenerator.generateId();
+        var subtaskIds = epic.getSubtaskIds();
+
+        epics.put(id, epic);
+
+        for (Subtask subtask : subtasks.values()) {
+            if (subtask.getEpicId() == id) {
+                subtaskIds.add(subtask.getId());
+            }
+        }
 
         return epic;
     }
 
-
     public Subtask createSubtask(Subtask subtask) {
-        subtasks.put(idGenerator.generateId(), subtask);
+        int id = idGenerator.generateId();
+
+        subtask.setId(id);
+        subtasks.put(id, subtask);
+        var epic = epics.get(subtask.getEpicId());
+
+        epic.setStatus(Task.Status.IN_PROGRESS);
+        epic.getSubtaskIds().add(id);
 
         return subtask;
     }
-
 
     public Task updateTask(Task taskToUpdate) {
         var task = Objects.requireNonNull(tasks.get(taskToUpdate.getId()));
