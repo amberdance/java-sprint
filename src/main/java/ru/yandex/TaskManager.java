@@ -125,12 +125,7 @@ public class TaskManager {
 
     public void deleteEpics() {
         // В задании не сказано, что при удалении эпика, должны удаляться подзадачи эпика
-        for (Integer id : epics.keySet()) {
-            if (id != null) {
-                subtasks.remove(id);
-            }
-        }
-
+        subtasks.clear();
         epics.clear();
     }
 
