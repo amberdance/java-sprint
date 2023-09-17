@@ -172,12 +172,34 @@ class TaskManagerTest {
     void deleteEpics() {
         taskManager.deleteEpics();
         assertEquals(0, taskManager.getEpics().size());
+        assertEquals(0, taskManager.getSubtasks().size());
     }
 
     @Test
     void deleteSubtasks() {
         taskManager.deleteSubtasks();
         assertEquals(0, taskManager.getSubtasks().size());
+    }
+
+    @Test
+    void testDeleteTask() {
+        var sizeBefore = taskManager.getTasks().size();
+        taskManager.deleteTask(currentId);
+        assertEquals(sizeBefore - 1, taskManager.getTasks().size());
+    }
+
+    @Test
+    void testDeleteEpic() {
+        var sizeBefore = taskManager.getEpics().size();
+        taskManager.deleteEpic(currentId);
+        assertEquals(sizeBefore - 1, taskManager.getEpics().size());
+    }
+
+    @Test
+    void testDeleteSubtask() {
+        var sizeBefore = taskManager.getSubtasks().size();
+        taskManager.deleteSubTask(currentId);
+        assertEquals(sizeBefore - 1, taskManager.getSubtasks().size());
     }
 
     @Test
