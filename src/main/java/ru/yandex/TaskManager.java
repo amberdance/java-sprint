@@ -87,7 +87,6 @@ public class TaskManager {
 
         epic.setName(epicToUpdate.getName());
         epic.setDescription(epicToUpdate.getDescription());
-        epic.setStatus(epicToUpdate.getStatus());
 
         var hasAllSubtasksStatusDone = getSubtasksByEpicId(epic.getId()).stream()
                 .allMatch(s -> s.getStatus().equals(Task.Status.DONE));
