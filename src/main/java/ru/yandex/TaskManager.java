@@ -45,16 +45,7 @@ public class TaskManager {
     }
 
     public Epic createEpic(Epic epic) {
-        int id = idGenerator.generateId();
-        var subtaskIds = epic.getSubtaskIds();
-
-        epics.put(id, epic);
-
-        for (Subtask subtask : subtasks.values()) {
-            if (subtask.getEpicId() == id) {
-                subtaskIds.add(subtask.getId());
-            }
-        }
+        epics.put(idGenerator.generateId(), epic);
 
         return epic;
     }
