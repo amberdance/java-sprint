@@ -117,13 +117,6 @@ public class TaskManager {
         return false;
     }
 
-    private void updateEpicSubtasksStatus(Task.Status status, List<Integer> subtaskIds) {
-        for (Integer subtaskId : subtaskIds) {
-            subtasks.get(subtaskId).setStatus(status);
-        }
-    }
-
-
     public Subtask updateSubtask(Subtask subtaskToUpdate) {
         var subtask = Objects.requireNonNull(subtasks.get(subtaskToUpdate.getId()));
 
