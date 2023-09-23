@@ -4,10 +4,10 @@ import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import ru.yandex.util.IdGenerator;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
-import java.util.stream.Collectors;
 
 @RequiredArgsConstructor
 @Getter
@@ -32,10 +32,11 @@ public class TaskManager {
     }
 
     public List<Subtask> getSubtasksByEpicId(int epicId) {
-        return subtasks.values()
-                .stream()
-                .filter(s -> s.getEpicId() == epicId)
-                .collect(Collectors.toList());
+        List<Subtask> result = new ArrayList<>();
+
+        epics.get(epicId).getSubtaskIds().forEach(id -> result.add(subtasks.get(id)));
+
+        return result;
     }
 
     public Task createTask(Task task) {
@@ -50,17 +51,32 @@ public class TaskManager {
         return epic;
     }
 
-    public Subtask createSubtask(Subtask subtask) {
+    public Subtask createSubtask(int epicId, Subtask subtask) {
         int id = idGenerator.generateId();
 
         subtask.setId(id);
         subtasks.put(id, subtask);
-        var epic = epics.get(subtask.getEpicId());
+        var epic = epics.get(epicId);
 
-        epic.setStatus(Task.Status.IN_PROGRESS);
+        updateEpicStatus(epic);
         epic.getSubtaskIds().add(id);
 
         return subtask;
+    }
+
+    private void updateEpicStatus(Epic epic) {
+        var subtasks = getSubtasksByEpicId(epic.getId());
+        var hasAllSubtasksStatusNew = epic.getSubtaskIds().isEmpty() || subtasks.stream().allMatch(s -> s.getStatus().equals(Task.Status.NEW));
+        var hasAllSubtasksStatusDone = subtasks.stream().anyMatch(s -> s.getStatus().equals(Task.Status.DONE));
+
+        if (hasAllSubtasksStatusNew) {
+            epic.setStatus(Task.Status.NEW);
+        } else if (hasAllSubtasksStatusDone) {
+            epic.setStatus(Task.Status.DONE);
+        } else {
+            epic.setStatus(Task.Status.IN_PROGRESS);
+        }
+
     }
 
     public Task updateTask(Task taskToUpdate) {
@@ -79,51 +95,26 @@ public class TaskManager {
         epic.setName(epicToUpdate.getName());
         epic.setDescription(epicToUpdate.getDescription());
 
-        if (allEpicSubtasksHasStatusDone(epicToUpdate.getSubtaskIds())) {
-            epicToUpdate.setStatus(Task.Status.DONE);
-        } else if (anyEpicSubtaskHasStatusInProgress(epicToUpdate.getSubtaskIds())) {
-            epicToUpdate.setStatus(Task.Status.IN_PROGRESS);
-        }
-
         return epic;
     }
 
-    private boolean allEpicSubtasksHasStatusDone(List<Integer> subtaskIds) {
-        for (Integer subtaskId : subtaskIds) {
-            if (!subtasks.get(subtaskId).getStatus().equals(Task.Status.DONE)) {
-                return false;
-            }
-        }
-
-        return true;
-    }
-
-    private boolean anyEpicSubtaskHasStatusInProgress(List<Integer> subtaskIds) {
-        for (Integer subtaskId : subtaskIds) {
-            if (subtasks.get(subtaskId).getStatus().equals(Task.Status.IN_PROGRESS)) {
-                return true;
-            }
-        }
-
-        return false;
-    }
-
     public Subtask updateSubtask(Subtask subtaskToUpdate) {
-        var subtask = Objects.requireNonNull(subtasks.get(subtaskToUpdate.getId()));
+        var subtask = subtasks.get(subtaskToUpdate.getId());
 
         subtask.setName(subtaskToUpdate.getName());
         subtask.setDescription(subtaskToUpdate.getDescription());
         subtask.setStatus(subtaskToUpdate.getStatus());
 
-        if (subtaskToUpdate.getStatus().equals(Task.Status.IN_PROGRESS)) {
-            var epic = Objects.requireNonNull(epics.get(subtaskToUpdate.getEpicId()));
-            epic.setStatus(Task.Status.IN_PROGRESS);
-        }
+        var epic = epics.get(subtaskToUpdate.getEpicId());
+        updateEpicStatus(epic);
 
         return subtask;
     }
 
     public void deleteTask(int id) {
+        var epic = epics.get(subtasks.get(id).getEpicId());
+        updateEpicStatus(epic);
+
         tasks.remove(id);
     }
 
@@ -147,12 +138,16 @@ public class TaskManager {
         tasks.clear();
     }
 
+    // WTF ?? - "@Нужно удалять только подзадачи этого эпика, а не все подзадачи"
+    // Зачем мне удалять только подзадачи этого эпика, если я удаляю ВСЕ эпики,
+    // следовательно и все ПОДЗАДАЧИ, входящие в ЭПИКИ подзадачи должны быть  подвергнуты удалению
     public void deleteEpics() {
         subtasks.clear();
         epics.clear();
     }
 
     public void deleteSubtasks() {
+        subtasks.values().forEach(s -> updateEpicStatus(epics.get(s.getEpicId())));
         subtasks.clear();
     }
 
