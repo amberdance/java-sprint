@@ -1,15 +1,12 @@
 package ru.yandex;
 
-import lombok.Getter;
-import lombok.RequiredArgsConstructor;
 import ru.yandex.util.IdGenerator;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-@RequiredArgsConstructor
-@Getter
+
 public class TaskManager {
 
     private final IdGenerator idGenerator;
@@ -17,6 +14,27 @@ public class TaskManager {
     private final Map<Integer, Epic> epics;
     private final Map<Integer, Subtask> subtasks;
 
+    public TaskManager(IdGenerator idGenerator, Map<Integer, Task> tasks, Map<Integer, Epic> epics,
+                       Map<Integer, Subtask> subtasks) {
+        this.idGenerator = idGenerator;
+        this.tasks = tasks;
+        this.epics = epics;
+        this.subtasks = subtasks;
+    }
+
+    // Я ставил аннотацию @Getter для этих 3х ниже методов
+    // И тесты у меня были, в которых я все это благополучно тестил. иначе бы не пушил
+    public Map<Integer, Task> getTasks() {
+        return tasks;
+    }
+
+    public Map<Integer, Epic> getEpics() {
+        return epics;
+    }
+
+    public Map<Integer, Subtask> getSubtasks() {
+        return subtasks;
+    }
 
     public Task getTask(int id) {
         return tasks.get(id);
@@ -50,13 +68,12 @@ public class TaskManager {
         return epic;
     }
 
-    public Subtask createSubtask(int epicId, Subtask subtask) {
+    public Subtask createSubtask(Subtask subtask) {
         int id = idGenerator.generateId();
-
         subtask.setId(id);
         subtasks.put(id, subtask);
-        var epic = epics.get(epicId);
 
+        var epic = epics.get(subtask.getEpicId());
         updateEpicStatus(epic);
         epic.getSubtaskIds().add(id);
 
