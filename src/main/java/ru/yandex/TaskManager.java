@@ -7,7 +7,6 @@ import ru.yandex.util.IdGenerator;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-import java.util.Objects;
 
 @RequiredArgsConstructor
 @Getter
@@ -80,7 +79,7 @@ public class TaskManager {
     }
 
     public Task updateTask(Task taskToUpdate) {
-        var task = Objects.requireNonNull(tasks.get(taskToUpdate.getId()));
+        var task = tasks.get(taskToUpdate.getId());
 
         task.setName(taskToUpdate.getName());
         task.setDescription(taskToUpdate.getDescription());
@@ -90,7 +89,7 @@ public class TaskManager {
     }
 
     public Epic updateEpic(Epic epicToUpdate) {
-        var epic = Objects.requireNonNull(epics.get(epicToUpdate.getId()));
+        var epic = epics.get(epicToUpdate.getId());
 
         epic.setName(epicToUpdate.getName());
         epic.setDescription(epicToUpdate.getDescription());
@@ -100,6 +99,10 @@ public class TaskManager {
 
     public Subtask updateSubtask(Subtask subtaskToUpdate) {
         var subtask = subtasks.get(subtaskToUpdate.getId());
+
+        if (subtask == null) {
+            throw new TaskNotFoundException("Если подзадачи не будет то вылезет NPE");
+        }
 
         subtask.setName(subtaskToUpdate.getName());
         subtask.setDescription(subtaskToUpdate.getDescription());
@@ -119,36 +122,35 @@ public class TaskManager {
     }
 
     public void deleteEpic(int id) {
+        var epic = epics.get(id);
+        epic.getSubtaskIds().forEach(subtasks::remove);
         epics.remove(id);
-
-        for (Subtask subtask : subtasks.values()) {
-            if (subtask.getEpicId() == id) {
-                subtasks.remove(id);
-            }
-        }
     }
 
     public void deleteSubtask(int id) {
-        var epicId = subtasks.get(id).getEpicId();
-        epics.get(epicId).getSubtaskIds().remove(((Integer) id));
+        var epic = epics.get(subtasks.get(id).getEpicId());
+        epic.getSubtaskIds().remove(id);
         subtasks.remove(id);
+        updateEpicStatus(epic);
     }
 
     public void deleteTasks() {
         tasks.clear();
     }
 
-    // WTF ?? - "@Нужно удалять только подзадачи этого эпика, а не все подзадачи"
-    // Зачем мне удалять только подзадачи этого эпика, если я удаляю ВСЕ эпики,
-    // следовательно и все ПОДЗАДАЧИ, входящие в ЭПИКИ подзадачи должны быть  подвергнуты удалению
     public void deleteEpics() {
         subtasks.clear();
         epics.clear();
     }
 
+    // Ведь в задании не сказано сделать метод удаления подзадач по ID эпика ?
+    // В таком случае, после удаления всех подзадач, делаем всем эпикам статус "новый" и удаляем у него Id подзадач
     public void deleteSubtasks() {
-        subtasks.values().forEach(s -> updateEpicStatus(epics.get(s.getEpicId())));
         subtasks.clear();
+        epics.values().forEach(e -> {
+            e.getSubtaskIds().clear();
+            e.setStatus(Task.Status.NEW);
+        });
     }
 
 }
