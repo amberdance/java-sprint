@@ -92,7 +92,6 @@ public class TaskManager {
         } else {
             epic.setStatus(Task.Status.IN_PROGRESS);
         }
-
     }
 
     public Task updateTask(Task taskToUpdate) {
@@ -118,7 +117,7 @@ public class TaskManager {
         var subtask = subtasks.get(subtaskToUpdate.getId());
 
         if (subtask == null) {
-            throw new TaskNotFoundException("Если подзадачи не будет то вылезет NPE");
+           return null; // Я читал в книгах и видел в видео, что null плохо возвращать, вроде бы как FailFast методика одобряется
         }
 
         subtask.setName(subtaskToUpdate.getName());
@@ -160,8 +159,6 @@ public class TaskManager {
         epics.clear();
     }
 
-    // Ведь в задании не сказано сделать метод удаления подзадач по ID эпика ?
-    // В таком случае, после удаления всех подзадач, делаем всем эпикам статус "новый" и удаляем у него Id подзадач
     public void deleteSubtasks() {
         subtasks.clear();
         epics.values().forEach(e -> {
