@@ -124,7 +124,7 @@ class TaskManagerTest {
         var epic = new Epic(id, "name", "description");
         epics.put(id, epic);
 
-        taskManager.createSubtask(new Subtask(epic.getId(), "SOME", "DESCRIPTION"));
+        taskManager.createSubtask(epic.getId(), new Subtask("SOME", "DESCRIPTION"));
         assertEquals(COUNT_OF_TASKS + 1, taskManager.getSubtasks().size());
         assertEquals(Task.Status.IN_PROGRESS, epic.getStatus() );
     }
