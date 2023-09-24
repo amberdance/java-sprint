@@ -22,18 +22,17 @@ public class TaskManager {
         this.subtasks = subtasks;
     }
 
-    // Я ставил аннотацию @Getter для этих 3х ниже методов
-    // И тесты у меня были, в которых я все это благополучно тестил. иначе бы не пушил
-    public Map<Integer, Task> getTasks() {
-        return tasks;
+    public List<Task> getTasks() {
+        return new ArrayList<>(tasks.values());
     }
 
-    public Map<Integer, Epic> getEpics() {
-        return epics;
+    public List<Epic> getEpics() {
+        return new ArrayList<>(epics.values());
+
     }
 
-    public Map<Integer, Subtask> getSubtasks() {
-        return subtasks;
+    public List<Subtask> getSubtasks() {
+        return new ArrayList<>(subtasks.values());
     }
 
     public Task getTask(int id) {
@@ -117,7 +116,7 @@ public class TaskManager {
         var subtask = subtasks.get(subtaskToUpdate.getId());
 
         if (subtask == null) {
-           return null; // Я читал в книгах и видел в видео, что null плохо возвращать, вроде бы как FailFast методика одобряется
+            return null;
         }
 
         subtask.setName(subtaskToUpdate.getName());
