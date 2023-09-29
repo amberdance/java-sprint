@@ -3,9 +3,7 @@ package ru.yandex;
 import lombok.RequiredArgsConstructor;
 import ru.yandex.util.IdGenerator;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 
 @RequiredArgsConstructor
@@ -15,9 +13,12 @@ public class InMemoryTaskManager implements TaskManager {
     private final Map<Integer, Task> tasks;
     private final Map<Integer, Epic> epics;
     private final Map<Integer, Subtask> subtasks;
+    private final Deque<Task> history;
 
 
-
+    public Deque<Task> getHistory() {
+        return history;
+    }
 
     @Override
     public List<Task> getTasks() {
@@ -27,7 +28,6 @@ public class InMemoryTaskManager implements TaskManager {
     @Override
     public List<Epic> getEpics() {
         return new ArrayList<>(epics.values());
-
     }
 
     @Override
@@ -37,17 +37,26 @@ public class InMemoryTaskManager implements TaskManager {
 
     @Override
     public Task getTask(int id) {
-        return tasks.get(id);
+        var task = tasks.get(id);
+        history.addLast(task);
+
+        return task;
     }
 
     @Override
     public Epic getEpic(int id) {
-        return epics.get(id);
+        var epic = epics.get(id);
+        history.addLast(epic);
+
+        return epic;
     }
 
     @Override
     public Subtask getSubtask(int id) {
-        return subtasks.get(id);
+        var subtask = subtasks.get(id);
+        history.addLast(subtask);
+
+        return subtask;
     }
 
     @Override
