@@ -1,12 +1,14 @@
-package ru.yandex;
+package ru.yandex.managers;
 
 import lombok.RequiredArgsConstructor;
+import ru.yandex.model.Epic;
+import ru.yandex.model.Subtask;
+import ru.yandex.model.Task;
 import ru.yandex.util.IdGenerator;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-import java.util.Queue;
 import java.util.stream.Collectors;
 
 
@@ -14,16 +16,11 @@ import java.util.stream.Collectors;
 public class InMemoryTaskManager implements TaskManager {
 
     private final IdGenerator idGenerator;
-    private final Queue<Task> history;
+    private final HistoryManager history;
     private final Map<Integer, Task> tasks;
     private final Map<Integer, Epic> epics;
     private final Map<Integer, Subtask> subtasks;
 
-
-    @Override
-    public Queue<Task> getHistory() {
-        return history;
-    }
 
     @Override
     public List<Task> getTasks() {
@@ -43,7 +40,7 @@ public class InMemoryTaskManager implements TaskManager {
     @Override
     public Task getTask(int id) {
         var task = tasks.get(id);
-        history.add(task);
+        history.addTask(task);
 
         return task;
     }
@@ -51,7 +48,7 @@ public class InMemoryTaskManager implements TaskManager {
     @Override
     public Epic getEpic(int id) {
         var epic = epics.get(id);
-        history.add(epic);
+        history.addTask(epic);
 
         return epic;
     }
@@ -59,7 +56,7 @@ public class InMemoryTaskManager implements TaskManager {
     @Override
     public Subtask getSubtask(int id) {
         var subtask = subtasks.get(id);
-        history.add(subtask);
+        history.addTask(subtask);
 
         return subtask;
     }

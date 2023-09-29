@@ -1,11 +1,12 @@
-package ru.yandex;
+package ru.yandex.managers;
+
+import ru.yandex.model.Epic;
+import ru.yandex.model.Subtask;
+import ru.yandex.model.Task;
 
 import java.util.List;
-import java.util.Queue;
 
-interface TaskManager {
-
-    Queue<Task> getHistory();
+public interface TaskManager {
 
     List<Task> getTasks();
 

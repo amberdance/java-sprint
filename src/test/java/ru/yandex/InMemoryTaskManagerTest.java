@@ -1,31 +1,37 @@
 package ru.yandex;
 
-import org.apache.commons.collections4.queue.CircularFifoQueue;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
+import ru.yandex.managers.HistoryManager;
+import ru.yandex.managers.InMemoryTaskManager;
+import ru.yandex.managers.TaskManager;
+import ru.yandex.model.Epic;
+import ru.yandex.model.Subtask;
+import ru.yandex.model.Task;
 import ru.yandex.util.IdGenerator;
+import ru.yandex.util.Managers;
 import ru.yandex.util.SimpleIdGenerator;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Queue;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
+import static ru.yandex.managers.InMemoryHistoryManager.HISTORY_CAPACITY;
 
 
 class InMemoryTaskManagerTest {
 
 
     private static final short COUNT_OF_TASKS = 3;
-    private static final short HISTORY_CAPACITY = 10;
+
     private static final IdGenerator idGenerator = new SimpleIdGenerator();
     private static final Map<Integer, Task> tasks = new HashMap<>();
     private static final Map<Integer, Epic> epics = new HashMap<>();
     private static final Map<Integer, Subtask> subtasks = new HashMap<>();
-    private static final Queue<Task> history = new CircularFifoQueue<>(HISTORY_CAPACITY);
+    private static final HistoryManager history = Managers.getDefaultHistory();
 
     private static TaskManager taskManager;
     private static int currentId;
@@ -63,7 +69,6 @@ class InMemoryTaskManagerTest {
     @Test
     void getHistory() {
         taskManager.getTask(currentId); // for saving to history
-        assertEquals(tasks.get(currentId), taskManager.getHistory().peek());
 
         for (int i = 0; i <= HISTORY_CAPACITY; i++) {
             var task = new Task("t", "t");
@@ -72,7 +77,7 @@ class InMemoryTaskManagerTest {
         }
 
         taskManager.getEpic(currentId); // for saving to history
-        assertEquals(HISTORY_CAPACITY, taskManager.getHistory().size());
+        assertEquals(HISTORY_CAPACITY, history.getHistory().size());
     }
 
     @Test

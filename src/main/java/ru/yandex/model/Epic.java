@@ -1,4 +1,4 @@
-package ru.yandex;
+package ru.yandex.model;
 
 import lombok.*;
 
