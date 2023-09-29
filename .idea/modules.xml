@@ -4,6 +4,7 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/java-sprint3-hw.iml" filepath="$PROJECT_DIR$/java-sprint3-hw.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/java-sprint3-hw.main.iml" filepath="$PROJECT_DIR$/.idea/modules/java-sprint3-hw.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/java-sprint3-hw.test.iml" filepath="$PROJECT_DIR$/.idea/modules/java-sprint3-hw.test.iml" />
     </modules>
   </component>
 </project>

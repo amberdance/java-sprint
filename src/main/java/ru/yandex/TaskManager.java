@@ -1,8 +1,11 @@
 package ru.yandex;
 
 import java.util.List;
+import java.util.Queue;
 
 interface TaskManager {
+
+    Queue<Task> getHistory();
 
     List<Task> getTasks();
 

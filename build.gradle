@@ -13,8 +13,10 @@ repositories {
 }
 
 dependencies {
-   compileOnly 'org.projectlombok:lombok:1.18.28'
-	annotationProcessor 'org.projectlombok:lombok:1.18.28'
+    testImplementation 'junit:junit:4.13.1'
+    compileOnly 'org.projectlombok:lombok:1.18.28'
+    annotationProcessor 'org.projectlombok:lombok:1.18.28'
+    implementation 'org.apache.commons:commons-collections4:4.4'
 
     testCompileOnly 'org.projectlombok:lombok:1.18.28'
     testAnnotationProcessor 'org.projectlombok:lombok:1.18.28'

@@ -3,20 +3,25 @@ package ru.yandex;
 import lombok.RequiredArgsConstructor;
 import ru.yandex.util.IdGenerator;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+import java.util.Queue;
+import java.util.stream.Collectors;
 
 
 @RequiredArgsConstructor
 public class InMemoryTaskManager implements TaskManager {
 
     private final IdGenerator idGenerator;
+    private final Queue<Task> history;
     private final Map<Integer, Task> tasks;
     private final Map<Integer, Epic> epics;
     private final Map<Integer, Subtask> subtasks;
-    private final Deque<Task> history;
 
 
-    public Deque<Task> getHistory() {
+    @Override
+    public Queue<Task> getHistory() {
         return history;
     }
 
@@ -38,7 +43,7 @@ public class InMemoryTaskManager implements TaskManager {
     @Override
     public Task getTask(int id) {
         var task = tasks.get(id);
-        history.addLast(task);
+        history.add(task);
 
         return task;
     }
@@ -46,7 +51,7 @@ public class InMemoryTaskManager implements TaskManager {
     @Override
     public Epic getEpic(int id) {
         var epic = epics.get(id);
-        history.addLast(epic);
+        history.add(epic);
 
         return epic;
     }
@@ -54,23 +59,24 @@ public class InMemoryTaskManager implements TaskManager {
     @Override
     public Subtask getSubtask(int id) {
         var subtask = subtasks.get(id);
-        history.addLast(subtask);
+        history.add(subtask);
 
         return subtask;
     }
 
     @Override
     public List<Subtask> getSubtasksByEpicId(int epicId) {
-        List<Subtask> result = new ArrayList<>();
-
-        epics.get(epicId).getSubtaskIds().forEach(id -> result.add(subtasks.get(id)));
-
-        return result;
+        return epics.get(epicId).getSubtaskIds()
+                .stream()
+                .map(subtasks::get)
+                .collect(Collectors.toList());
     }
 
     @Override
     public Task createTask(Task task) {
-        tasks.put(idGenerator.generateId(), task);
+        var id = idGenerator.generateId();
+        task.setId(id);
+        tasks.put(id, task);
 
         return task;
     }
