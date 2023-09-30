@@ -26,7 +26,7 @@ public class InMemoryTaskManager implements TaskManager {
     }
 
     @Override
-    public HistoryManager getHistoryManager() {
+    public HistoryManager getHistory() {
         return historyManager;
     }
 
