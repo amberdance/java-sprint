@@ -2,7 +2,6 @@ package ru.yandex;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import ru.yandex.managers.HistoryManager;
 import ru.yandex.managers.InMemoryTaskManager;
 import ru.yandex.managers.TaskManager;
 import ru.yandex.model.Epic;
@@ -20,8 +19,7 @@ import static ru.yandex.managers.InMemoryHistoryManager.HISTORY_CAPACITY;
 class InMemoryTaskManagerTest {
 
     private static final IdGenerator idGenerator = new SimpleIdGenerator();
-    private static final HistoryManager history = Managers.getDefaultHistory();
-    private static final TaskManager taskManager = new InMemoryTaskManager(idGenerator, history);
+    private static final TaskManager taskManager = new InMemoryTaskManager(idGenerator, Managers.getDefaultHistory());
 
 
     @BeforeEach
@@ -47,7 +45,7 @@ class InMemoryTaskManagerTest {
         }
 
         taskManager.getEpic(2); // for saving to history
-        assertEquals(HISTORY_CAPACITY, history.getHistory().size());
+        assertEquals(HISTORY_CAPACITY, taskManager.getHistoryManager().getHistory().size());
     }
 
     @Test
