@@ -8,6 +8,8 @@ import java.util.List;
 
 public interface TaskManager {
 
+    HistoryManager getHistoryManager();
+
     List<Task> getTasks();
 
     List<Epic> getEpics();

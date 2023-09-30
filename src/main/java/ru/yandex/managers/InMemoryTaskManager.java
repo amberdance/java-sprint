@@ -15,14 +15,19 @@ import java.util.stream.Collectors;
 public class InMemoryTaskManager implements TaskManager {
 
     private final IdGenerator idGenerator;
-    private final HistoryManager history;
+    private final HistoryManager historyManager;
     private final Map<Integer, Task> tasks = new HashMap<>();
     private final Map<Integer, Epic> epics = new HashMap<>();
     private final Map<Integer, Subtask> subtasks = new HashMap<>();
 
-    public InMemoryTaskManager(IdGenerator idGenerator, HistoryManager history) {
+    public InMemoryTaskManager(IdGenerator idGenerator, HistoryManager historyManager) {
         this.idGenerator = idGenerator;
-        this.history = history;
+        this.historyManager = historyManager;
+    }
+
+    @Override
+    public HistoryManager getHistoryManager() {
+        return historyManager;
     }
 
     @Override
@@ -43,7 +48,7 @@ public class InMemoryTaskManager implements TaskManager {
     @Override
     public Task getTask(int id) {
         var task = tasks.get(id);
-        history.addTask(task);
+        historyManager.addTask(task);
 
         return task;
     }
@@ -51,7 +56,7 @@ public class InMemoryTaskManager implements TaskManager {
     @Override
     public Epic getEpic(int id) {
         var epic = epics.get(id);
-        history.addTask(epic);
+        historyManager.addTask(epic);
 
         return epic;
     }
@@ -59,7 +64,7 @@ public class InMemoryTaskManager implements TaskManager {
     @Override
     public Subtask getSubtask(int id) {
         var subtask = subtasks.get(id);
-        history.addTask(subtask);
+        historyManager.addTask(subtask);
 
         return subtask;
     }
