@@ -1,26 +1,29 @@
 package ru.yandex.managers;
 
-import lombok.RequiredArgsConstructor;
 import ru.yandex.model.Epic;
 import ru.yandex.model.Subtask;
 import ru.yandex.model.Task;
 import ru.yandex.util.IdGenerator;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
 
-@RequiredArgsConstructor
 public class InMemoryTaskManager implements TaskManager {
 
     private final IdGenerator idGenerator;
     private final HistoryManager history;
-    private final Map<Integer, Task> tasks;
-    private final Map<Integer, Epic> epics;
-    private final Map<Integer, Subtask> subtasks;
+    private final Map<Integer, Task> tasks = new HashMap<>();
+    private final Map<Integer, Epic> epics = new HashMap<>();
+    private final Map<Integer, Subtask> subtasks = new HashMap<>();
 
+    public InMemoryTaskManager(IdGenerator idGenerator, HistoryManager history) {
+        this.idGenerator = idGenerator;
+        this.history = history;
+    }
 
     @Override
     public List<Task> getTasks() {
@@ -80,7 +83,9 @@ public class InMemoryTaskManager implements TaskManager {
 
     @Override
     public Epic createEpic(Epic epic) {
-        epics.put(idGenerator.generateId(), epic);
+        var id = idGenerator.generateId();
+        epic.setId(id);
+        epics.put(id, epic);
 
         return epic;
     }
