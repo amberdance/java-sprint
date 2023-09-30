@@ -18,11 +18,6 @@ public class Task {
     protected String description;
     protected Status status = Status.NEW;
 
-    public Task(int id, @NonNull String name, @NonNull String description) {
-        this.id = id;
-        this.name = name;
-        this.description = description;
-    }
 
     public Task(@NonNull String name, @NonNull String description) {
         this.name = name;

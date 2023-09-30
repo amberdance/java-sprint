@@ -5,4 +5,6 @@ public interface IdGenerator {
     int getCurrentId();
 
     int generateId();
+
+    void resetIndex();
 }

@@ -13,4 +13,9 @@ public class SimpleIdGenerator implements IdGenerator {
     public int generateId() {
         return id++;
     }
+
+    @Override
+    public void resetIndex() {
+        id = 1;
+    }
 }
