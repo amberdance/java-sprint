@@ -6,7 +6,7 @@ public class SimpleIdGenerator implements IdGenerator {
 
     @Override
     public int getCurrentId() {
-        return id;
+        return id - 1;
     }
 
     @Override
