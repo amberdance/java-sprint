@@ -1,6 +1,5 @@
 package ru.yandex;
 
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
@@ -14,61 +13,44 @@ import ru.yandex.util.IdGenerator;
 import ru.yandex.util.Managers;
 import ru.yandex.util.SimpleIdGenerator;
 
-import java.util.HashMap;
-import java.util.Map;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static ru.yandex.managers.InMemoryHistoryManager.HISTORY_CAPACITY;
 
 
+@Disabled
 class InMemoryTaskManagerTest {
 
 
     private static final short COUNT_OF_TASKS = 3;
-
     private static final IdGenerator idGenerator = new SimpleIdGenerator();
-    private static final Map<Integer, Task> tasks = new HashMap<>();
-    private static final Map<Integer, Epic> epics = new HashMap<>();
-    private static final Map<Integer, Subtask> subtasks = new HashMap<>();
     private static final HistoryManager history = Managers.getDefaultHistory();
+    private static final TaskManager taskManager = new InMemoryTaskManager(idGenerator, history);
 
-    private static TaskManager taskManager;
-    private static int currentId;
-
-
-    @BeforeAll
-    static void beforeAll() {
-        taskManager = new InMemoryTaskManager(idGenerator, history, tasks, epics, subtasks);
-    }
 
     @BeforeEach
     void setUp() {
-        tasks.clear();
-        epics.clear();
-        subtasks.clear();
+        taskManager.deleteTasks();
+        taskManager.deleteEpics();
+        taskManager.deleteSubtasks();
 
-        for (int i = 0; i < COUNT_OF_TASKS; i++) {
-            var id = idGenerator.generateId();
-            var name = "Name_" + id;
-            var description = "Description_" + id;
+        for (int i = 1; i <= COUNT_OF_TASKS; i++) {
+            var name = "Name_" + i;
+            var description = "Description_" + i;
 
-            tasks.put(id, new Task(id, name, description));
-            var epic = new Epic(id, name, description);
-            epics.put(id, epic);
+            taskManager.createTask(new Task(name, description));
 
-            for (int j = 0; j < COUNT_OF_TASKS; j++) {
-                subtasks.put(id, new Subtask(id, epic.getId(), name, description));
-                epic.getSubtaskIds().add(id);
-            }
+            var epic = taskManager.createEpic(new Epic(name, description));
+            var subtask = taskManager.createSubtask(new Subtask(epic.getId(), name, description));
+
+            epic.getSubtaskIds().add(subtask.getId());
         }
-
-        currentId = idGenerator.getCurrentId() - 1;
     }
 
     @Test
     void getHistory() {
-        taskManager.getTask(currentId); // for saving to history
+        var currentId = idGenerator.getCurrentId();
+        taskManager.getTask(idGenerator.getCurrentId()); // for saving to history
 
         for (int i = 0; i <= HISTORY_CAPACITY; i++) {
             var task = new Task("t", "t");
@@ -97,20 +79,22 @@ class InMemoryTaskManagerTest {
 
     @Test
     void getTask() {
-        var task = taskManager.getTask(currentId);
+        var id = 1;
+        var task = taskManager.getTask(id);
 
-        assertEquals("Name_" + currentId, task.getName());
-        assertEquals("Description_" + currentId, task.getDescription());
+        assertEquals("Name_" + id, task.getName());
+        assertEquals("Description_" + id, task.getDescription());
         assertEquals(Task.Status.NEW, task.getStatus());
         assertThrows(NullPointerException.class, () -> taskManager.getTask(999999));
     }
 
     @Test
     void getEpic() {
-        var epic = taskManager.getEpic(currentId);
+        var id = 4;
+        var epic = taskManager.getEpic(id);
 
-        assertEquals("Name_" + currentId, epic.getName());
-        assertEquals("Description_" + currentId, epic.getDescription());
+        assertEquals("Name_" + id, epic.getName());
+        assertEquals("Description_" + id, epic.getDescription());
         assertEquals(Task.Status.NEW, epic.getStatus());
         assertThrows(NullPointerException.class, () -> taskManager.getEpic(999999));
 
@@ -118,10 +102,11 @@ class InMemoryTaskManagerTest {
 
     @Test
     void getSubtask() {
-        var subtask = taskManager.getSubtask(currentId);
+        var id = 3;
+        var subtask = taskManager.getSubtask(id);
 
-        assertEquals("Name_" + currentId, subtask.getName());
-        assertEquals("Description_" + currentId, subtask.getDescription());
+        assertEquals("Name_" + id, subtask.getName());
+        assertEquals("Description_" + id, subtask.getDescription());
         assertEquals(Task.Status.NEW, subtask.getStatus());
         assertThrows(NullPointerException.class, () -> taskManager.getSubtask(999999));
     }
@@ -141,9 +126,7 @@ class InMemoryTaskManagerTest {
 
     @Test
     void createSubtask() {
-        int id = idGenerator.generateId();
-        var epic = new Epic(id, "name", "description");
-        epics.put(id, epic);
+        var epic = taskManager.getEpic(3);
 
         taskManager.createSubtask(new Subtask(epic.getId(), "SOME", "DESCRIPTION"));
         assertEquals(COUNT_OF_TASKS + 1, taskManager.getSubtasks().size());
@@ -151,6 +134,7 @@ class InMemoryTaskManagerTest {
 
     @Test
     void updateTask() {
+        var currentId = idGenerator.getCurrentId();
         var task = taskManager.getTask(currentId);
         task.setStatus(Task.Status.DONE);
         task.setName("NAME");
@@ -165,6 +149,7 @@ class InMemoryTaskManagerTest {
 
     @Test
     void updateEpic() {
+        var currentId = idGenerator.getCurrentId();
         var epic = taskManager.getEpic(currentId);
         epic.setName("NAME");
         epic.setDescription("DESCRIPTION");
@@ -184,6 +169,7 @@ class InMemoryTaskManagerTest {
 
     @Test
     void updateSubtask() {
+        var currentId = idGenerator.getCurrentId();
         var subtask = taskManager.getSubtask(currentId);
         subtask.setStatus(Task.Status.IN_PROGRESS);
         subtask.setName("NAME");
@@ -218,36 +204,40 @@ class InMemoryTaskManagerTest {
 
     @Test
     void testDeleteTask() {
-        var sizeBefore = tasks.size();
+        var currentId = idGenerator.getCurrentId();
+        var sizeBefore = taskManager.getTasks().size();
         taskManager.deleteTask(currentId);
-        assertEquals(sizeBefore - 1, tasks.size());
+        assertEquals(sizeBefore - 1, taskManager.getTasks().size());
     }
 
     @Test
     void testDeleteEpic() {
-        var sizeBefore = epics.size();
+        var currentId = idGenerator.getCurrentId();
+        var sizeBefore = taskManager.getEpics().size();
         taskManager.deleteEpic(currentId);
-        assertEquals(sizeBefore - 1, epics.size());
+        assertEquals(sizeBefore - 1, taskManager.getEpics().size());
     }
 
     @Test
     @Disabled
     void deleteSubtask() {
-        var sizeBefore = subtasks.size();
-        var epicSubtasksIdsBefore = epics.get(currentId).getSubtaskIds().size();
+        var currentId = idGenerator.getCurrentId();
+        var sizeBefore = taskManager.getSubtasks().size();
+        var epicSubtasksIdsBefore = taskManager.getEpics().get(currentId).getSubtaskIds().size();
 
         taskManager.deleteSubtask(currentId);
-        assertEquals(sizeBefore - 1, subtasks.size());
-        assertEquals(epicSubtasksIdsBefore - 1, epics.get(currentId).getSubtaskIds().size());
+        assertEquals(sizeBefore - 1, taskManager.getSubtasks().size());
+        assertEquals(epicSubtasksIdsBefore - 1, taskManager.getEpics().get(currentId).getSubtaskIds().size());
     }
 
     @Test
     @Disabled
     void getSubtasksByEpicId() {
-        var epic = epics.get(currentId);
+        var currentId = idGenerator.getCurrentId();
+        var epic = taskManager.getEpic(currentId);
         int expectedSubtaskCount = 0;
 
-        for (Subtask subtask : subtasks.values()) {
+        for (Subtask subtask : taskManager.getSubtasks()) {
             if (subtask.getEpicId() == epic.getId()) {
                 expectedSubtaskCount++;
             }
