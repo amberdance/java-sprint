@@ -6,7 +6,9 @@ import java.util.Queue;
 
 public interface HistoryManager {
 
-    boolean addTask(Task task);
+    void addTask(Task task);
+
+    void remove(int id);
 
     Queue<Task> getHistory();
 

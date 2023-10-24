@@ -6,12 +6,24 @@ import ru.yandex.model.Task;
 import java.util.Queue;
 
 public class InMemoryHistoryManager implements HistoryManager {
-    public static final short HISTORY_CAPACITY = 10;
-    private final Queue<Task> history = new CircularFifoQueue<>(HISTORY_CAPACITY);
+
+    private final Queue<Task> history = new CircularFifoQueue<>();
 
     @Override
-    public boolean addTask(Task task) {
-        return history.add(task);
+    public void addTask(Task task) {
+        var lastTask = history.peek();
+
+        if (lastTask == null || !lastTask.equals(task)) {
+            history.add(task);
+        }
+    }
+
+    @Override
+    public void remove(int id) {
+        try {
+            history.removeIf(task -> task.getId() == id);
+        } catch (NullPointerException ignored) {
+        }
     }
 
     @Override

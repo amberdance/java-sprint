@@ -13,7 +13,6 @@ import ru.yandex.util.SimpleIdGenerator;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static ru.yandex.managers.InMemoryHistoryManager.HISTORY_CAPACITY;
 
 
 class InMemoryTaskManagerTest {
@@ -36,16 +35,17 @@ class InMemoryTaskManagerTest {
 
     @Test
     void getHistory() {
+        var limit = 10;
         taskManager.getTask(1); // for saving to history
 
-        for (int i = 0; i <= HISTORY_CAPACITY; i++) {
+        for (int i = 0; i <= limit; i++) {
             var task = new Task("t", "t");
             taskManager.createTask(task);
             taskManager.getTask(task.getId());
         }
 
         taskManager.getEpic(2); // for saving to history
-        assertEquals(HISTORY_CAPACITY, taskManager.getHistoryManager().getHistory().size());
+        assertEquals(limit, taskManager.getHistoryManager().getHistory().size());
     }
 
     @Test
