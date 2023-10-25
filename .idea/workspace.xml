@@ -4,27 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="40a52164-e38c-45eb-b944-91eb64c6826a" name="Changes" comment="chore: 5 задание">
-      <change afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/untitled/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/untitled/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/checkstyle-idea.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/codeStyles/Project.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/codeStyles/codeStyleConfig.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/jpa-buddy.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/uiDesigner.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gradlew" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gradlew.bat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/settings.gradle" beforeDir="false" />
+    <list default="true" id="40a52164-e38c-45eb-b944-91eb64c6826a" name="Changes" comment="chore: Переезд на maven">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/yandex/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/yandex/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/yandex/managers/HistoryManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/yandex/managers/HistoryManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/yandex/managers/InMemoryHistoryManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/yandex/managers/InMemoryHistoryManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/yandex/managers/InMemoryTaskManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/yandex/managers/InMemoryTaskManager.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -119,7 +104,7 @@
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "onboarding.tips.debug.path": "C:/Projects/Java/java-sprint3-hw/untitled/src/main/java/ru/yandex/Main.java",
-    "project.structure.last.edited": "Artifacts",
+    "project.structure.last.edited": "Modules",
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.2",
     "settings.editor.selected.configurable": "preferences.sourceCode.Java",
@@ -149,7 +134,7 @@
       <recent name="ru.yandex.service" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.ru.yandex in java-sprint345">
+  <component name="RunManager" selected="JUnit.test in java-sprint345">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="ru.yandex.Main" />
       <module name="java-sprint345" />
@@ -178,22 +163,6 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="InMemoryTaskManagerTest.getHistory" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="java-sprint3-hw.test" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="ru.yandex.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="ru.yandex" />
-      <option name="MAIN_CLASS_NAME" value="ru.yandex.InMemoryTaskManagerTest" />
-      <option name="METHOD_NAME" value="getHistory" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="java in java-sprint3-hw.test" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="java-sprint3-hw.test" />
       <option name="TEST_OBJECT" value="directory" />
@@ -216,6 +185,14 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="test in java-sprint345" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="java-sprint345" />
+      <option name="TEST_OBJECT" value="directory" />
+      <dir value="$PROJECT_DIR$/src/test" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration default="true" type="JetRunConfigurationType">
       <module name="java-kanban" />
       <method v="2">
@@ -231,11 +208,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.ru.yandex in java-sprint345" />
+        <item itemvalue="JUnit.test in java-sprint345" />
         <item itemvalue="Application.Main" />
+        <item itemvalue="JUnit.ru.yandex in java-sprint345" />
         <item itemvalue="JUnit.InMemoryTaskManagerTest" />
         <item itemvalue="JUnit.java in java-sprint3-hw.test" />
-        <item itemvalue="JUnit.InMemoryTaskManagerTest.getHistory" />
       </list>
     </recent_temporary>
   </component>
@@ -267,14 +244,7 @@
       <workItem from="1696167775787" duration="604000" />
       <workItem from="1698175944578" duration="4246000" />
       <workItem from="1698245072343" duration="309000" />
-      <workItem from="1698245413204" duration="194000" />
-    </task>
-    <task id="LOCAL-00052" summary="refactor: Заменил var на типы для любования красотой синтаксиса">
-      <created>1694633944077</created>
-      <option name="number" value="00052" />
-      <option name="presentableId" value="LOCAL-00052" />
-      <option name="project" value="LOCAL" />
-      <updated>1694633944077</updated>
+      <workItem from="1698245413204" duration="2759000" />
     </task>
     <task id="LOCAL-00053" summary="feature: Добавил привязку подзадачи к эпику через id эпика">
       <created>1694637023768</created>
@@ -612,11 +582,29 @@
       <option name="project" value="LOCAL" />
       <updated>1698180179067</updated>
     </task>
-    <option name="localTasksCounter" value="101" />
+    <task id="LOCAL-00101" summary="chore: Переезд на maven">
+      <created>1698245715362</created>
+      <option name="number" value="00101" />
+      <option name="presentableId" value="LOCAL-00101" />
+      <option name="project" value="LOCAL" />
+      <updated>1698245715362</updated>
+    </task>
+    <option name="localTasksCounter" value="102" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.History.Properties">
+    <option name="COLUMN_ID_ORDER">
+      <list>
+        <option value="Default.Root" />
+        <option value="Default.Author" />
+        <option value="Default.Date" />
+        <option value="Default.Subject" />
+        <option value="Space.CommitStatus" />
+      </list>
+    </option>
   </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
@@ -633,7 +621,6 @@
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="refactor: Удалил неиспользуемый метод" />
     <MESSAGE value="refactor: Убрал ненужное" />
     <MESSAGE value="refactor: Убрал getOrDefault" />
     <MESSAGE value="refactor: Убрал добавление подзадач в createEpic" />
@@ -658,7 +645,8 @@
     <MESSAGE value="fix: Исправлено название метода" />
     <MESSAGE value="fix: Удалено исключение" />
     <MESSAGE value="chore: 5 задание" />
-    <option name="LAST_COMMIT_MESSAGE" value="chore: 5 задание" />
+    <MESSAGE value="chore: Переезд на maven" />
+    <option name="LAST_COMMIT_MESSAGE" value="chore: Переезд на maven" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

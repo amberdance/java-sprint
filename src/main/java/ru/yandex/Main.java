@@ -24,10 +24,13 @@ public class Main {
 
         var epic2 = taskManager.createEpic(new Epic("epic2", "descr"));
 
-        taskManager.getEpic(epic2.getId());
-        taskManager.getEpic(epic1.getId());
         taskManager.getTask(task2.getId());
         taskManager.getTask(task1.getId());
+        taskManager.getTask(task1.getId());
+        taskManager.getTask(task1.getId());
+        taskManager.getTask(task1.getId());
+        taskManager.getEpic(epic2.getId());
+        taskManager.getEpic(epic1.getId());
 
         System.out.println("До удаления");
         printHistory(taskManager.getHistoryManager());
