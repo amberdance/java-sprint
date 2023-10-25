@@ -1,0 +1,674 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="40a52164-e38c-45eb-b944-91eb64c6826a" name="Changes" comment="chore: 5 задание">
+      <change afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/untitled/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/untitled/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/checkstyle-idea.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/codeStyles/Project.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/codeStyles/codeStyleConfig.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/jpa-buddy.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/uiDesigner.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/gradlew" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/gradlew.bat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/settings.gradle" beforeDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ExternalProjectsData">
+    <projectState path="$PROJECT_DIR$">
+      <ProjectState />
+    </projectState>
+  </component>
+  <component name="ExternalProjectsManager">
+    <system id="GRADLE">
+      <state>
+        <task path="$PROJECT_DIR$">
+          <activation />
+        </task>
+        <projects_view>
+          <tree_state>
+            <expand>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="java-sprint3-hw" type="f1a62948:ProjectNode" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="java-sprint3-hw" type="f1a62948:ProjectNode" />
+                <item name="Tasks" type="e4a08cd1:TasksNode" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="java-sprint3-hw" type="f1a62948:ProjectNode" />
+                <item name="Tasks" type="e4a08cd1:TasksNode" />
+                <item name="build" type="c8890929:TasksNode$1" />
+              </path>
+            </expand>
+            <select />
+          </tree_state>
+        </projects_view>
+      </state>
+    </system>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Enum" />
+        <option value="JUnit5 Test Class" />
+        <option value="Interface" />
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="RESET_MODE" value="HARD" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="useMavenConfig" value="true" />
+      </MavenGeneralSettings>
+    </option>
+  </component>
+  <component name="ProjectId" id="2VFwfrYOHQxjBbTjr6fMVQbK6BV" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="autoscrollToSource" value="true" />
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_ADD_EXTERNAL_FILES": "true",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary": "JUnit5",
+    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5": "",
+    "create.test.in.the.same.root": "true",
+    "git-widget-placeholder": "main",
+    "ignore.virus.scanning.warn.message": "true",
+    "jdk.selected.JAVA_MODULE": "11",
+    "last_directory_selection": "C:/Projects/Java/java-sprint3-hw/src/test/java/ru/yandex",
+    "last_opened_file_path": "C:/Projects/Java/java-sprint3-hw",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "onboarding.tips.debug.path": "C:/Projects/Java/java-sprint3-hw/untitled/src/main/java/ru/yandex/Main.java",
+    "project.structure.last.edited": "Artifacts",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
+    "settings.editor.selected.configurable": "preferences.sourceCode.Java",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+  <component name="RecentsManager">
+    <key name="CreateClassDialog.RecentsKey">
+      <recent name="ru.yandex.managers" />
+      <recent name="ru.yandex" />
+      <recent name="ru.yandex.util" />
+      <recent name="ru.yandex.repository" />
+      <recent name="ru.yandex.service" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Projects\Java\java-sprint3-hw" />
+    </key>
+    <key name="CreateTestDialog.Recents.Supers">
+      <recent name="" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Projects\Java\java-sprint3-hw" />
+      <recent name="C:\Projects\Java\java-sprint3-hw\src\test\java" />
+    </key>
+    <key name="CreateTestDialog.RecentsKey">
+      <recent name="ru.yandex" />
+      <recent name="ru.yandex.service" />
+    </key>
+  </component>
+  <component name="RunManager" selected="JUnit.ru.yandex in java-sprint345">
+    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="ru.yandex.Main" />
+      <module name="java-sprint345" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="ru.yandex.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="InMemoryTaskManagerTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="java-sprint3-hw.test" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="ru.yandex.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="ru.yandex" />
+      <option name="MAIN_CLASS_NAME" value="ru.yandex.InMemoryTaskManagerTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="InMemoryTaskManagerTest.getHistory" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="java-sprint3-hw.test" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="ru.yandex.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="ru.yandex" />
+      <option name="MAIN_CLASS_NAME" value="ru.yandex.InMemoryTaskManagerTest" />
+      <option name="METHOD_NAME" value="getHistory" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="java in java-sprint3-hw.test" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="java-sprint3-hw.test" />
+      <option name="TEST_OBJECT" value="directory" />
+      <dir value="$PROJECT_DIR$/src/test/java" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ru.yandex in java-sprint345" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="java-sprint345" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="ru.yandex.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="ru.yandex" />
+      <option name="TEST_OBJECT" value="package" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="JetRunConfigurationType">
+      <module name="java-kanban" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
+      <module name="java-kanban" />
+      <option name="filePath" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="JUnit.ru.yandex in java-sprint345" />
+        <item itemvalue="Application.Main" />
+        <item itemvalue="JUnit.InMemoryTaskManagerTest" />
+        <item itemvalue="JUnit.java in java-sprint3-hw.test" />
+        <item itemvalue="JUnit.InMemoryTaskManagerTest.getHistory" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="40a52164-e38c-45eb-b944-91eb64c6826a" name="Changes" comment="" />
+      <created>1694445244278</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1694445244278</updated>
+      <workItem from="1694445245440" duration="8083000" />
+      <workItem from="1694587376602" duration="1000" />
+      <workItem from="1694618136601" duration="21102000" />
+      <workItem from="1694674970043" duration="5700000" />
+      <workItem from="1694680759326" duration="9000" />
+      <workItem from="1694706286186" duration="54000" />
+      <workItem from="1694873869924" duration="7716000" />
+      <workItem from="1694934809031" duration="5345000" />
+      <workItem from="1695220060568" duration="598000" />
+      <workItem from="1695302090045" duration="597000" />
+      <workItem from="1695476922806" duration="9376000" />
+      <workItem from="1695575406202" duration="6000" />
+      <workItem from="1695834163730" duration="6475000" />
+      <workItem from="1696015540946" duration="1435000" />
+      <workItem from="1696017011923" duration="6175000" />
+      <workItem from="1696066080243" duration="105000" />
+      <workItem from="1696081284817" duration="7858000" />
+      <workItem from="1696167775787" duration="604000" />
+      <workItem from="1698175944578" duration="4246000" />
+      <workItem from="1698245072343" duration="309000" />
+      <workItem from="1698245413204" duration="194000" />
+    </task>
+    <task id="LOCAL-00052" summary="refactor: Заменил var на типы для любования красотой синтаксиса">
+      <created>1694633944077</created>
+      <option name="number" value="00052" />
+      <option name="presentableId" value="LOCAL-00052" />
+      <option name="project" value="LOCAL" />
+      <updated>1694633944077</updated>
+    </task>
+    <task id="LOCAL-00053" summary="feature: Добавил привязку подзадачи к эпику через id эпика">
+      <created>1694637023768</created>
+      <option name="number" value="00053" />
+      <option name="presentableId" value="LOCAL-00053" />
+      <option name="project" value="LOCAL" />
+      <updated>1694637023768</updated>
+    </task>
+    <task id="LOCAL-00054" summary="refactor: TaskRepository работает только с задачами">
+      <created>1694677086240</created>
+      <option name="number" value="00054" />
+      <option name="presentableId" value="LOCAL-00054" />
+      <option name="project" value="LOCAL" />
+      <updated>1694677086241</updated>
+    </task>
+    <task id="LOCAL-00055" summary="fix: Убрал лишнюю проверку на класс">
+      <created>1694677282088</created>
+      <option name="number" value="00055" />
+      <option name="presentableId" value="LOCAL-00055" />
+      <option name="project" value="LOCAL" />
+      <updated>1694677282088</updated>
+    </task>
+    <task id="LOCAL-00056" summary="fix: Нацепил NonNull на параметры">
+      <created>1694677784954</created>
+      <option name="number" value="00056" />
+      <option name="presentableId" value="LOCAL-00056" />
+      <option name="project" value="LOCAL" />
+      <updated>1694677784954</updated>
+    </task>
+    <task id="LOCAL-00057" summary="fix: Эпик репозиторий работает только с эпиками">
+      <created>1694678240255</created>
+      <option name="number" value="00057" />
+      <option name="presentableId" value="LOCAL-00057" />
+      <option name="project" value="LOCAL" />
+      <updated>1694678240255</updated>
+    </task>
+    <task id="LOCAL-00058" summary="fix: Убрал ненужный апдейт">
+      <created>1694678483111</created>
+      <option name="number" value="00058" />
+      <option name="presentableId" value="LOCAL-00058" />
+      <option name="project" value="LOCAL" />
+      <updated>1694678483111</updated>
+    </task>
+    <task id="LOCAL-00059" summary="fix: Объеденил условие фильтра">
+      <created>1694678519741</created>
+      <option name="number" value="00059" />
+      <option name="presentableId" value="LOCAL-00059" />
+      <option name="project" value="LOCAL" />
+      <updated>1694678519741</updated>
+    </task>
+    <task id="LOCAL-00060" summary="fix: Добавил дополнительную проверку в тест на создание эпика">
+      <created>1694678707729</created>
+      <option name="number" value="00060" />
+      <option name="presentableId" value="LOCAL-00060" />
+      <option name="project" value="LOCAL" />
+      <updated>1694678707729</updated>
+    </task>
+    <task id="LOCAL-00061" summary="feature: При установке DONE эпика обновляются и подзадача">
+      <created>1694679261743</created>
+      <option name="number" value="00061" />
+      <option name="presentableId" value="LOCAL-00061" />
+      <option name="project" value="LOCAL" />
+      <updated>1694679261743</updated>
+    </task>
+    <task id="LOCAL-00062" summary="fix: Если все подзадачи DONE, то эпик тоже должен быть DONE">
+      <created>1694679541198</created>
+      <option name="number" value="00062" />
+      <option name="presentableId" value="LOCAL-00062" />
+      <option name="project" value="LOCAL" />
+      <updated>1694679541198</updated>
+    </task>
+    <task id="LOCAL-00063" summary="feature: Если есть подзадача IN_PROGRESS, то эпик тоже должен быть IN_PROGRESS">
+      <created>1694680036105</created>
+      <option name="number" value="00063" />
+      <option name="presentableId" value="LOCAL-00063" />
+      <option name="project" value="LOCAL" />
+      <updated>1694680036105</updated>
+    </task>
+    <task id="LOCAL-00064" summary="fix: При удалении подзадачи , она удаляется из списка подзадач Эпика">
+      <created>1694680613569</created>
+      <option name="number" value="00064" />
+      <option name="presentableId" value="LOCAL-00064" />
+      <option name="project" value="LOCAL" />
+      <updated>1694680613569</updated>
+    </task>
+    <task id="LOCAL-00065" summary="refactor: Убрал id, лишнее свойство с списком подзадач">
+      <created>1694874284678</created>
+      <option name="number" value="00065" />
+      <option name="presentableId" value="LOCAL-00065" />
+      <option name="project" value="LOCAL" />
+      <updated>1694874284678</updated>
+    </task>
+    <task id="LOCAL-00066" summary="refactor: тупо TaskManager">
+      <created>1694874506800</created>
+      <option name="number" value="00066" />
+      <option name="presentableId" value="LOCAL-00066" />
+      <option name="project" value="LOCAL" />
+      <updated>1694874506800</updated>
+    </task>
+    <task id="LOCAL-00067" summary="chore: Удалил тесты">
+      <created>1694874912749</created>
+      <option name="number" value="00067" />
+      <option name="presentableId" value="LOCAL-00067" />
+      <option name="project" value="LOCAL" />
+      <updated>1694874912749</updated>
+    </task>
+    <task id="LOCAL-00068" summary="chore: Обновил Main">
+      <created>1694874922408</created>
+      <option name="number" value="00068" />
+      <option name="presentableId" value="LOCAL-00068" />
+      <option name="project" value="LOCAL" />
+      <updated>1694874922408</updated>
+    </task>
+    <task id="LOCAL-00069" summary="chore: Упростил донельзя">
+      <created>1694874952348</created>
+      <option name="number" value="00069" />
+      <option name="presentableId" value="LOCAL-00069" />
+      <option name="project" value="LOCAL" />
+      <updated>1694874952348</updated>
+    </task>
+    <task id="LOCAL-00070" summary="chore: Вернул удаление подзадач при удалении эпика">
+      <created>1694935443502</created>
+      <option name="number" value="00070" />
+      <option name="presentableId" value="LOCAL-00070" />
+      <option name="project" value="LOCAL" />
+      <updated>1694935443502</updated>
+    </task>
+    <task id="LOCAL-00071" summary="chore: Упростил deleteEpics">
+      <created>1694935781819</created>
+      <option name="number" value="00071" />
+      <option name="presentableId" value="LOCAL-00071" />
+      <option name="project" value="LOCAL" />
+      <updated>1694935781819</updated>
+    </task>
+    <task id="LOCAL-00072" summary="chore: Возвращаю null, если не найдено">
+      <created>1694935868703</created>
+      <option name="number" value="00072" />
+      <option name="presentableId" value="LOCAL-00072" />
+      <option name="project" value="LOCAL" />
+      <updated>1694935868703</updated>
+    </task>
+    <task id="LOCAL-00073" summary="chore: Добавил эпику коллекцию, хранящую id подзадач">
+      <created>1694937901428</created>
+      <option name="number" value="00073" />
+      <option name="presentableId" value="LOCAL-00073" />
+      <option name="project" value="LOCAL" />
+      <updated>1694937901428</updated>
+    </task>
+    <task id="LOCAL-00074" summary="chore: Убрал обновление статуса у эпика">
+      <created>1694938014991</created>
+      <option name="number" value="00074" />
+      <option name="presentableId" value="LOCAL-00074" />
+      <option name="project" value="LOCAL" />
+      <updated>1694938014991</updated>
+    </task>
+    <task id="LOCAL-00075" summary="chore: При удалении подзадачи. удаляется ее id и свойства у эпика">
+      <created>1694938670311</created>
+      <option name="number" value="00075" />
+      <option name="presentableId" value="LOCAL-00075" />
+      <option name="project" value="LOCAL" />
+      <updated>1694938670311</updated>
+    </task>
+    <task id="LOCAL-00076" summary="chore: Переделал обновление статуса эпика">
+      <created>1694939459628</created>
+      <option name="number" value="00076" />
+      <option name="presentableId" value="LOCAL-00076" />
+      <option name="project" value="LOCAL" />
+      <updated>1694939459628</updated>
+    </task>
+    <task id="LOCAL-00077" summary="refactor: Убрал ненужное">
+      <created>1695477266600</created>
+      <option name="number" value="00077" />
+      <option name="presentableId" value="LOCAL-00077" />
+      <option name="project" value="LOCAL" />
+      <updated>1695477266601</updated>
+    </task>
+    <task id="LOCAL-00078" summary="refactor: Убрал getOrDefault">
+      <created>1695477296600</created>
+      <option name="number" value="00078" />
+      <option name="presentableId" value="LOCAL-00078" />
+      <option name="project" value="LOCAL" />
+      <updated>1695477296600</updated>
+    </task>
+    <task id="LOCAL-00079" summary="refactor: Убрал добавление подзадач в createEpic">
+      <created>1695477532267</created>
+      <option name="number" value="00079" />
+      <option name="presentableId" value="LOCAL-00079" />
+      <option name="project" value="LOCAL" />
+      <updated>1695477532267</updated>
+    </task>
+    <task id="LOCAL-00080" summary="refactor: Удалил тесты, ибо нахуй это ревьюверу не надо">
+      <created>1695482343607</created>
+      <option name="number" value="00080" />
+      <option name="presentableId" value="LOCAL-00080" />
+      <option name="project" value="LOCAL" />
+      <updated>1695482343607</updated>
+    </task>
+    <task id="LOCAL-00081" summary="refactor: Переделал с учетом комментариев ревьювера">
+      <created>1695482364569</created>
+      <option name="number" value="00081" />
+      <option name="presentableId" value="LOCAL-00081" />
+      <option name="project" value="LOCAL" />
+      <updated>1695482364569</updated>
+    </task>
+    <task id="LOCAL-00082" summary="refactor: Финальная попытка не залететь в другую КОГОРТУ">
+      <created>1695492164487</created>
+      <option name="number" value="00082" />
+      <option name="presentableId" value="LOCAL-00082" />
+      <option name="project" value="LOCAL" />
+      <updated>1695492164487</updated>
+    </task>
+    <task id="LOCAL-00083" summary="refactor: Тесты ушли нахуй (">
+      <created>1695492184126</created>
+      <option name="number" value="00083" />
+      <option name="presentableId" value="LOCAL-00083" />
+      <option name="project" value="LOCAL" />
+      <updated>1695492184126</updated>
+    </task>
+    <task id="LOCAL-00084" summary="refactor: Правки №6">
+      <created>1695494550595</created>
+      <option name="number" value="00084" />
+      <option name="presentableId" value="LOCAL-00084" />
+      <option name="project" value="LOCAL" />
+      <updated>1695494550596</updated>
+    </task>
+    <task id="LOCAL-00085" summary="refactor: Правки №7">
+      <created>1695494632905</created>
+      <option name="number" value="00085" />
+      <option name="presentableId" value="LOCAL-00085" />
+      <option name="project" value="LOCAL" />
+      <updated>1695494632905</updated>
+    </task>
+    <task id="LOCAL-00086" summary="refactor: Переделал методы получения списков">
+      <created>1695561088336</created>
+      <option name="number" value="00086" />
+      <option name="presentableId" value="LOCAL-00086" />
+      <option name="project" value="LOCAL" />
+      <updated>1695561088336</updated>
+    </task>
+    <task id="LOCAL-00087" summary="feat: Интерфейс TaskManager">
+      <created>1696015938206</created>
+      <option name="number" value="00087" />
+      <option name="presentableId" value="LOCAL-00087" />
+      <option name="project" value="LOCAL" />
+      <updated>1696015938207</updated>
+    </task>
+    <task id="LOCAL-00088" summary="feat: Добавлена history">
+      <created>1696016585554</created>
+      <option name="number" value="00088" />
+      <option name="presentableId" value="LOCAL-00088" />
+      <option name="project" value="LOCAL" />
+      <updated>1696016585554</updated>
+    </task>
+    <task id="LOCAL-00089" summary="chore: History от apache commons">
+      <created>1696020581842</created>
+      <option name="number" value="00089" />
+      <option name="presentableId" value="LOCAL-00089" />
+      <option name="project" value="LOCAL" />
+      <updated>1696020581843</updated>
+    </task>
+    <task id="LOCAL-00090" summary="feat: Накашлял кода">
+      <created>1696022676800</created>
+      <option name="number" value="00090" />
+      <option name="presentableId" value="LOCAL-00090" />
+      <option name="project" value="LOCAL" />
+      <updated>1696022676800</updated>
+    </task>
+    <task id="LOCAL-00091" summary="fix: Убрал лишнюю аннотацию">
+      <created>1696081325561</created>
+      <option name="number" value="00091" />
+      <option name="presentableId" value="LOCAL-00091" />
+      <option name="project" value="LOCAL" />
+      <updated>1696081325562</updated>
+    </task>
+    <task id="LOCAL-00092" summary="fix: Переделал поля для InMemoryTaskManager">
+      <created>1696083502438</created>
+      <option name="number" value="00092" />
+      <option name="presentableId" value="LOCAL-00092" />
+      <option name="project" value="LOCAL" />
+      <updated>1696083502438</updated>
+    </task>
+    <task id="LOCAL-00093" summary="fix: Переделал возврат currentId">
+      <created>1696083514810</created>
+      <option name="number" value="00093" />
+      <option name="presentableId" value="LOCAL-00093" />
+      <option name="project" value="LOCAL" />
+      <updated>1696083514810</updated>
+    </task>
+    <task id="LOCAL-00094" summary="fix: Отключил пока тесты">
+      <created>1696083524547</created>
+      <option name="number" value="00094" />
+      <option name="presentableId" value="LOCAL-00094" />
+      <option name="project" value="LOCAL" />
+      <updated>1696083524547</updated>
+    </task>
+    <task id="LOCAL-00095" summary="fix: Вернул getHistory в интерфейс Manager">
+      <created>1696083836072</created>
+      <option name="number" value="00095" />
+      <option name="presentableId" value="LOCAL-00095" />
+      <option name="project" value="LOCAL" />
+      <updated>1696083836072</updated>
+    </task>
+    <task id="LOCAL-00096" summary="fix: getHistoryManager =&gt; getHistory">
+      <created>1696083920155</created>
+      <option name="number" value="00096" />
+      <option name="presentableId" value="LOCAL-00096" />
+      <option name="project" value="LOCAL" />
+      <updated>1696083920155</updated>
+    </task>
+    <task id="LOCAL-00097" summary="fix: Вернул тесты и исправил ошибки">
+      <created>1696086925033</created>
+      <option name="number" value="00097" />
+      <option name="presentableId" value="LOCAL-00097" />
+      <option name="project" value="LOCAL" />
+      <updated>1696086925033</updated>
+    </task>
+    <task id="LOCAL-00098" summary="fix: Исправлено название метода">
+      <created>1696087219697</created>
+      <option name="number" value="00098" />
+      <option name="presentableId" value="LOCAL-00098" />
+      <option name="project" value="LOCAL" />
+      <updated>1696087219697</updated>
+    </task>
+    <task id="LOCAL-00099" summary="fix: Удалено исключение">
+      <created>1696093210823</created>
+      <option name="number" value="00099" />
+      <option name="presentableId" value="LOCAL-00099" />
+      <option name="project" value="LOCAL" />
+      <updated>1696093210823</updated>
+    </task>
+    <task id="LOCAL-00100" summary="chore: 5 задание">
+      <created>1698180179066</created>
+      <option name="number" value="00100" />
+      <option name="presentableId" value="LOCAL-00100" />
+      <option name="project" value="LOCAL" />
+      <updated>1698180179067</updated>
+    </task>
+    <option name="localTasksCounter" value="101" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
+    <option name="CHECK_NEW_TODO" value="false" />
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+    <MESSAGE value="refactor: Удалил неиспользуемый метод" />
+    <MESSAGE value="refactor: Убрал ненужное" />
+    <MESSAGE value="refactor: Убрал getOrDefault" />
+    <MESSAGE value="refactor: Убрал добавление подзадач в createEpic" />
+    <MESSAGE value="refactor: Удалил тесты, ибо нахуй это ревьюверу не надо" />
+    <MESSAGE value="refactor: Переделал с учетом комментариев ревьювера" />
+    <MESSAGE value="refactor: Финальная попытка не залететь в другую КОГОРТУ" />
+    <MESSAGE value="refactor: Тесты ушли нахуй (" />
+    <MESSAGE value="refactor: Правки №6" />
+    <MESSAGE value="refactor: Правки №7" />
+    <MESSAGE value="refactor: Переделал методы получения списков" />
+    <MESSAGE value="feat: Интерфейс TaskManager" />
+    <MESSAGE value="feat: Добавлена history" />
+    <MESSAGE value="chore: History от apache commons" />
+    <MESSAGE value="feat: Накашлял кода" />
+    <MESSAGE value="fix: Убрал лишнюю аннотацию" />
+    <MESSAGE value="fix: Переделал поля для InMemoryTaskManager" />
+    <MESSAGE value="fix: Переделал возврат currentId" />
+    <MESSAGE value="fix: Отключил пока тесты" />
+    <MESSAGE value="fix: Вернул getHistory в интерфейс Manager" />
+    <MESSAGE value="fix: getHistoryManager =&gt; getHistory" />
+    <MESSAGE value="fix: Вернул тесты и исправил ошибки" />
+    <MESSAGE value="fix: Исправлено название метода" />
+    <MESSAGE value="fix: Удалено исключение" />
+    <MESSAGE value="chore: 5 задание" />
+    <option name="LAST_COMMIT_MESSAGE" value="chore: 5 задание" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/untitled/src/main/java/ru/yandex/Main.java</url>
+          <line>15</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+</project>
