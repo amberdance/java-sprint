@@ -19,6 +19,7 @@ public class InMemoryTaskManager implements TaskManager {
     private final Map<Integer, Epic> epics = new HashMap<>();
     private final Map<Integer, Subtask> subtasks = new HashMap<>();
 
+
     public InMemoryTaskManager(IdGenerator idGenerator, HistoryManager historyManager) {
         this.idGenerator = idGenerator;
         this.historyManager = historyManager;
@@ -166,7 +167,7 @@ public class InMemoryTaskManager implements TaskManager {
 
     @Override
     public void deleteTask(int id) {
-        historyManager.remove(tasks.get(id));
+        historyManager.remove(id);
         tasks.remove(id);
     }
 
@@ -175,11 +176,11 @@ public class InMemoryTaskManager implements TaskManager {
         var epic = epics.get(id);
         var epicSubtasks = epic.getSubtasks();
 
-        epicSubtasks.forEach(historyManager::remove);
+        epicSubtasks.forEach(subtask -> historyManager.remove(subtask.getId()));
         epicSubtasks.clear();
 
         epics.remove(id);
-        historyManager.remove(epic);
+        historyManager.remove(epic.getId());
 
     }
 
@@ -191,7 +192,7 @@ public class InMemoryTaskManager implements TaskManager {
         epic.getSubtasks().remove(subtask);
         subtasks.remove(id);
         updateEpicStatus(epic);
-        historyManager.remove(subtask);
+        historyManager.remove(subtask.getId());
     }
 
     @Override
