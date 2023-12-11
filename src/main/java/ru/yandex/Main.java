@@ -1,5 +1,6 @@
 package ru.yandex;
 
+import ru.yandex.managers.FileBackedTasksManager;
 import ru.yandex.managers.HistoryManager;
 import ru.yandex.managers.InMemoryHistoryManager;
 import ru.yandex.managers.InMemoryTaskManager;
@@ -7,6 +8,8 @@ import ru.yandex.model.Epic;
 import ru.yandex.model.Subtask;
 import ru.yandex.model.Task;
 import ru.yandex.util.SimpleIdGenerator;
+
+import java.io.File;
 
 public class Main {
 
@@ -41,6 +44,7 @@ public class Main {
         System.out.println("После удаления");
         printHistory(taskManager.getHistoryManager());
 
+        var fileTaskManager = FileBackedTasksManager.loadFromFile(new File("data/data.csv"));
     }
 
     private static void printHistory(HistoryManager historyManager) {

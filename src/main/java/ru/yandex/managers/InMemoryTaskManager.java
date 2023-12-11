@@ -13,11 +13,11 @@ import java.util.Map;
 
 public class InMemoryTaskManager implements TaskManager {
 
-    private final IdGenerator idGenerator;
-    private final HistoryManager historyManager;
-    private final Map<Integer, Task> tasks = new HashMap<>();
-    private final Map<Integer, Epic> epics = new HashMap<>();
-    private final Map<Integer, Subtask> subtasks = new HashMap<>();
+    protected final IdGenerator idGenerator;
+    protected final HistoryManager historyManager;
+    protected final Map<Integer, Task> tasks = new HashMap<>();
+    protected final Map<Integer, Epic> epics = new HashMap<>();
+    protected final Map<Integer, Subtask> subtasks = new HashMap<>();
 
 
     public InMemoryTaskManager(IdGenerator idGenerator, HistoryManager historyManager) {

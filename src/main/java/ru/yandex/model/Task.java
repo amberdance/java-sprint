@@ -39,4 +39,8 @@ public class Task {
                 ", status=" + status +
                 '}';
     }
+
+    public String toStringFromFile() {
+        return String.format("%s,%s,%s,%s", id, name, description, status);
+    }
 }
